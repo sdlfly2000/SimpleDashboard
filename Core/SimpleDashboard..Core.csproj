@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\SimpleDashboard..Core.csproj" />
+    <PackageReference Include="IdeaActivator.Common.Core" Version="1.0.36" />
   </ItemGroup>
 
 </Project>

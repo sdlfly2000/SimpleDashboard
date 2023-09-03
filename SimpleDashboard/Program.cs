@@ -1,20 +1,29 @@
 using Common.Core.DependencyInjection;
-using Core;
+using Infra.Database.MySQL;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddMySQLDatabase(builder.Configuration.GetConnectionString("SimpleDashboard")!);
+//builder.Services.AddMySQLDatabase(builder.Configuration.GetConnectionString("SimpleDashboard")!);
+
+builder.Services.AddDbContext<SimpleDashboardContext>(
+                options => options.UseMySql(
+                    builder.Configuration.GetConnectionString("SimpleDashboard"),
+                    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("SimpleDashboard")),
+                    b => b.MigrationsAssembly("Infra.Database.MySQL")));
+
+//builder.Services.RegisterDomain(
+//    "SimpleDashboard",
+//    "Application.Services",
+//    "Domain.Serivces",
+//    "Infra.Database.MySQL");
 
 builder.Services.RegisterDomain(
     "SimpleDashboard",
-    "Application",
-    "Application.Services",
-    "Domain",
-    "Domain.Serivces",
     "Infra.Database.MySQL");
 
 var app = builder.Build();

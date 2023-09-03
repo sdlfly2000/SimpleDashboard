@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core
+namespace Common
 {
     public static class SimpleDashboardServiceExtention
     {
