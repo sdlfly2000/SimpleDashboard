@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="IdeaActivator.Common.Core" Version="1.0.36" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infra.Database.MySQL\Infra.Database.MySQL.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,8 +1,21 @@
+using Common.Core.DependencyInjection;
+using Core;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddMySQLDatabase(builder.Configuration.GetConnectionString("SimpleDashboard")!);
+
+builder.Services.RegisterDomain(
+    "SimpleDashboard",
+    "Application",
+    "Application.Services",
+    "Domain",
+    "Domain.Serivces",
+    "Infra.Database.MySQL");
 
 var app = builder.Build();
 
@@ -16,7 +29,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 
 app.MapControllerRoute(
     name: "default",
