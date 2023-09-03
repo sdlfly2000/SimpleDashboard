@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard", "SimpleDashboard\SimpleDashboard.csproj", "{2923F1CE-0CE0-4D7A-8B8B-D3CCBE8F93C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Presentation", "1-Presentation", "{3B090057-1B67-4FF0-85E3-179D03B9FFDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Application", "2-Application", "{290B3989-E6FE-4B87-94EA-DB9192738A8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Domain", "3-Domain", "{C09D79B0-8A1A-4460-B1F3-596A46841594}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infrastructure", "{C867AFCD-E372-4B4A-80F6-FD0C5AC25ACC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-CommonCore", "5-CommonCore", "{B7F3C2D7-E84D-4C89-9DCC-C63E27D1DA2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2923F1CE-0CE0-4D7A-8B8B-D3CCBE8F93C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2923F1CE-0CE0-4D7A-8B8B-D3CCBE8F93C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2923F1CE-0CE0-4D7A-8B8B-D3CCBE8F93C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2923F1CE-0CE0-4D7A-8B8B-D3CCBE8F93C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2923F1CE-0CE0-4D7A-8B8B-D3CCBE8F93C4} = {3B090057-1B67-4FF0-85E3-179D03B9FFDD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76DC2A6F-E5B6-47E5-BA65-5513D96D941F}
+	EndGlobalSection
+EndGlobal
