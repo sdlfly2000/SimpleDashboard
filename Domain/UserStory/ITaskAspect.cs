@@ -8,5 +8,6 @@ namespace Domain.UserStory
 {
     public interface ITaskAspect
     {
+
     }
 }
