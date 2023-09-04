@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Services", "Domain.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Database.MySQL", "Infra.Database.MySQL\Infra.Database.MySQL.csproj", "{D9DDDF8A-ACB1-4741-AD8E-BABEF924595B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard..Core", "Core\SimpleDashboard..Core.csproj", "{92DF49BB-2DD4-463E-B849-459BABEFCBC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard.Core", "Core\SimpleDashboard.Core.csproj", "{92DF49BB-2DD4-463E-B849-459BABEFCBC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDashboard.Common", "Common\SimpleDashboard.Common.csproj", "{38BBDC8F-0EA1-46EC-B668-66C0A84F3B03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard.Common", "Common\SimpleDashboard.Common.csproj", "{38BBDC8F-0EA1-46EC-B668-66C0A84F3B03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\SimpleDashboard.Common.csproj" />
-    <ProjectReference Include="..\Core\SimpleDashboard..Core.csproj" />
+    <ProjectReference Include="..\Core\SimpleDashboard.Core.csproj" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
