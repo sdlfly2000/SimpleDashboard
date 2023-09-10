@@ -4,7 +4,7 @@ namespace Domain.UserStory
 {
     public interface IUserStoryInformationAspect
     {
-        public UserStoryReference Id { get; set; }
+        public UserStoryReference Id { get; }
         public string Title { get; set; }
         public string Description { get; set; }
         public UserReference Owner { get; set; }
