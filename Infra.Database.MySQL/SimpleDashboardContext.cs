@@ -1,4 +1,5 @@
 ﻿using Common.Core.DependencyInjection;
+using Infra.Database.MySQL.User.Entities;
 using Infra.Database.MySQL.UserStory.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,6 @@ namespace Infra.Database.MySQL
         }
 
         public DbSet<UserStoryInformationEntity> userStoryInformationEntities { get; set; }
+        public DbSet<UserEntity> UserEntities { get; set; }
     }
 }
