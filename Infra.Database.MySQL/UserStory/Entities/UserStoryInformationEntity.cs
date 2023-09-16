@@ -1,6 +1,5 @@
 ﻿using Infra.Database.MySQL.User.Entities;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Infra.Database.MySQL.UserStory.Entities
 {
