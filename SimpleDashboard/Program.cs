@@ -9,15 +9,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddMySQLDatabase(builder.Configuration.GetConnectionString("SimpleDashboard")!);
 
+builder.Services.RegisterDomain(
+    "SimpleDashboard",
+    "Domain.Services",
+    "Infra.Database.MySQL");
+
 //builder.Services.RegisterDomain(
 //    "SimpleDashboard",
 //    "Application.Services",
 //    "Domain.Serivces",
 //    "Infra.Database.MySQL");
-
-builder.Services.RegisterDomain(
-    "SimpleDashboard",
-    "Infra.Database.MySQL");
 
 var app = builder.Build();
 

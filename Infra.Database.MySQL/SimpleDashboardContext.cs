@@ -14,5 +14,6 @@ namespace Infra.Database.MySQL
 
         public DbSet<UserStoryInformationEntity> userStoryInformationEntities { get; set; }
         public DbSet<UserEntity> UserEntities { get; set; }
+        public DbSet<TaskEntity> Tasks { get; set; }
     }
 }

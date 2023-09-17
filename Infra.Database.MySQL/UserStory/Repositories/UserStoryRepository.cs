@@ -12,13 +12,9 @@ namespace Infra.Database.MySQL.UserStory.Repositories
         private readonly SimpleDashboardContext _context;
         private readonly IUserStoryInformationAspectMapper _mapper;
 
-        public UserStoryRepository(IUserStoryInformationAspectMapper mapper)
+        public UserStoryRepository(IUserStoryInformationAspectMapper mapper, SimpleDashboardContext context)
         {
             _mapper = mapper;
-        }
-
-        public UserStoryRepository(SimpleDashboardContext context)
-        {
             _context = context;
         }
 

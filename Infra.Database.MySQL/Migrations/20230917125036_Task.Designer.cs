@@ -3,6 +3,7 @@ using System;
 using Infra.Database.MySQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Database.MySQL.Migrations
 {
     [DbContext(typeof(SimpleDashboardContext))]
-    partial class SimpleDashboardContextModelSnapshot : ModelSnapshot
+    [Migration("20230917125036_Task")]
+    partial class Task
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,9 +76,6 @@ namespace Infra.Database.MySQL.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("UserStoryId")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedById");
@@ -83,8 +83,6 @@ namespace Infra.Database.MySQL.Migrations
                     b.HasIndex("ModifiedById");
 
                     b.HasIndex("OwnerId");
-
-                    b.HasIndex("UserStoryId");
 
                     b.ToTable("Tasks");
                 });
@@ -159,19 +157,11 @@ namespace Infra.Database.MySQL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Infra.Database.MySQL.UserStory.Entities.UserStoryInformationEntity", "UserStoryInformationEntity")
-                        .WithMany()
-                        .HasForeignKey("UserStoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("CreatedBy");
 
                     b.Navigation("ModifiedBy");
 
                     b.Navigation("Owner");
-
-                    b.Navigation("UserStoryInformationEntity");
                 });
 
             modelBuilder.Entity("Infra.Database.MySQL.UserStory.Entities.UserStoryInformationEntity", b =>
