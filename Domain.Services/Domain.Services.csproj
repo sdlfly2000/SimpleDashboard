@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\SimpleDashboard.Core.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="User\" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\SimpleDashboard.Core.csproj" />
+    <ProjectReference Include="..\Infra.Database.MySQL\Infra.Database.MySQL.csproj" />
   </ItemGroup>
 
 </Project>

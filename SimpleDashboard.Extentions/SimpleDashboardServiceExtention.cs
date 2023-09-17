@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Common
+namespace SimpleDashboard.Extentions
 {
     public static class SimpleDashboardServiceExtention
     {
@@ -10,6 +10,7 @@ namespace Common
         {
             return services.AddDbContext<SimpleDashboardContext>(
                 options => options.UseMySql(
+                    connectionString,
                     ServerVersion.AutoDetect(connectionString),
                     b => b.MigrationsAssembly("Infra.Database.MySQL")));
         }
