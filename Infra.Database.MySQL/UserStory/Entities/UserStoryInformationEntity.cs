@@ -1,9 +1,10 @@
-﻿using Infra.Database.MySQL.User.Entities;
+﻿using Common.Core.Data.Sql;
+using Infra.Database.MySQL.User.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Infra.Database.MySQL.UserStory.Entities
 {
-    public class UserStoryInformationEntity
+    public class UserStoryInformationEntity : IEntity
     {
         [Key]
         public Guid Id { get; set; }

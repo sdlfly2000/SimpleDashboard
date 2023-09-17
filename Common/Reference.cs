@@ -4,8 +4,8 @@ namespace SimpleDashboard.Common
 {
     public abstract class Reference : IReference
     {
-        public required string Code { get; set; }
-        public required string CacheFieldName { get; set; }
+        public string Code { get; set; }
+        public string CacheFieldName { get; set; }
 
         public string CacheCode
         {

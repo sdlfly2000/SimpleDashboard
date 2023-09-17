@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Common.Core.Data.Sql;
+using System.ComponentModel.DataAnnotations;
 
 namespace Infra.Database.MySQL.User.Entities
 {
-    public class UserEntity
+    public class UserEntity : IEntity
     {
         [Key]
         public Guid Id { get; set; }
