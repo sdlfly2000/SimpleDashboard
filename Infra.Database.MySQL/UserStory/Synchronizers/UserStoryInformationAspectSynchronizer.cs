@@ -17,6 +17,14 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
                 : Guid.Empty,
             Title = aspect.Title,
             Description = aspect.Description,
+            OwnerId = Guid.Parse(aspect.Owner.Code),
+            StartedOn = aspect.StartedOn,
+            Period = aspect.Period,
+            Status = aspect.Status.Status,
+            ModifiedOn = aspect.ModifiedOn,
+            ModifiedById = Guid.Parse(aspect.ModifiedBy.Code),
+            CreatedOn = aspect.CreatedOn,
+            CreatedById = Guid.Parse(aspect.CreatedBy.Code)
         };
     }
 }
