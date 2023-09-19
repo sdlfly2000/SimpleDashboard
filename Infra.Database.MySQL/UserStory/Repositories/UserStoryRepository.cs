@@ -1,4 +1,5 @@
-﻿using Common.Core.DependencyInjection;
+﻿using Common.Core.AOP.Cache;
+using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Repositories;
 using Domain.UserStory;
 using Infra.Database.MySQL.UserStory.Entities;
@@ -16,6 +17,16 @@ namespace Infra.Database.MySQL.UserStory.Repositories
         {
             _mapper = mapper;
             _context = context;
+        }
+
+        public IReference Add(IUserStoryInformationAspect aspect)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(IUserStoryInformationAspect aspect)
+        {
+            throw new NotImplementedException();
         }
 
         public IUserStoryInformationAspect LoadById(Guid Id)

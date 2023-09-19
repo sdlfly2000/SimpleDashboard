@@ -1,9 +1,9 @@
-﻿using Domain.UserStory;
+﻿using Common.Core.Data.Sql;
+using Domain.UserStory;
 
 namespace Domain.Services.UserStory.Repositories
 {
-    public interface IUserStoryRepository 
+    public interface IUserStoryRepository : IRepository<IUserStoryInformationAspect, IEntity>
     {
-        IUserStoryInformationAspect LoadById(Guid Id);
     }
 }

@@ -25,6 +25,6 @@ namespace Domain.UserStory
         public UserReference ModifiedBy { get => _userStoryInformationAspect.ModifiedBy; set => _userStoryInformationAspect.ModifiedBy = value; }
         public DateTime CreatedOn { get => _userStoryInformationAspect.CreatedOn; set => _userStoryInformationAspect.CreatedOn = value; }
         public UserReference CreatedBy { get => _userStoryInformationAspect.CreatedBy; set => _userStoryInformationAspect.CreatedBy = value; }
-        public IReference Reference { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IReference Reference { get => _userStoryInformationAspect.Reference; set => _userStoryInformationAspect.Reference = value; }
     }
 }

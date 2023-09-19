@@ -2,10 +2,7 @@
 
 namespace Domain.Services.UserStory.Synchronizers
 {
-    public interface ITaskAspectSynchronizer
+    public interface ITaskAspectSynchronizer : ISynchronizer<TaskReference, ITaskAspect>
     {
-        void Synchronize(ITaskAspect aspect);
-
-        TaskReference Add(ITaskAspect aspect);
     }
 }

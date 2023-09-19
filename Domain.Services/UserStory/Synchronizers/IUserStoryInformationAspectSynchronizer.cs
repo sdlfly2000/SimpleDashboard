@@ -2,10 +2,7 @@
 
 namespace Domain.Services.UserStory.Synchronizers
 {
-    public interface IUserStoryInformationAspectSynchronizer
+    public interface IUserStoryInformationAspectSynchronizer : ISynchronizer<UserStoryReference, IUserStoryInformationAspect>
     {
-        void Synchronize(IUserStoryInformationAspect aspect);
-
-        UserStoryReference Add(IUserStoryInformationAspect aspect);
     }
 }
