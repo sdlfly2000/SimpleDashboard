@@ -13,7 +13,7 @@ namespace Infra.Database.MySQL.UserStory.Mappers
         {
             return new TaskAspect
             {
-                Id = new TaskReference(entity.Id.ToString()),
+                Reference = new TaskReference(entity.Id.ToString()),
                 Title = entity.Title,
                 Description = entity.Description,
                 Owner = new UserReference(entity.OwnerId.ToString()),

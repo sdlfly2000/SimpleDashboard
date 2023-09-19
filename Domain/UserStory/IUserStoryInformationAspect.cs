@@ -1,10 +1,10 @@
-﻿using Domain.User;
+﻿using Common.Core.Domain;
+using Domain.User;
 
 namespace Domain.UserStory
 {
-    public interface IUserStoryInformationAspect
+    public interface IUserStoryInformationAspect : IAspect
     {
-        public UserStoryReference Id { get; }
         public string Title { get; set; }
         public string Description { get; set; }
         public UserReference Owner { get; set; }

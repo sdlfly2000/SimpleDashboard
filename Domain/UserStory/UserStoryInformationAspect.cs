@@ -1,4 +1,5 @@
-﻿using Domain.User;
+﻿using Common.Core.AOP.Cache;
+using Domain.User;
 
 namespace Domain.UserStory
 {
@@ -6,11 +7,9 @@ namespace Domain.UserStory
     {
         public UserStoryInformationAspect(UserStoryReference reference)
         {
-            Id = reference;
+            Reference = reference;
         }
-
-        public UserStoryReference Id { get; }
-
+        
         public string Title { get; set; }
         public string Description { get; set; }
         public UserReference Owner { get; set; }
@@ -21,5 +20,6 @@ namespace Domain.UserStory
         public UserReference ModifiedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public UserReference CreatedBy { get; set; }
+        public IReference Reference { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Domain.User;
+﻿using Common.Core.AOP.Cache;
+using Domain.User;
 
 namespace Domain.UserStory
 {
@@ -14,7 +15,6 @@ namespace Domain.UserStory
 
         public List<ITaskAspect> Tasks { get; }
 
-        public UserStoryReference Id { get => _userStoryInformationAspect.Id; private set { } }
         public string Title { get => _userStoryInformationAspect.Title; set => _userStoryInformationAspect.Title = value; }
         public string Description { get => _userStoryInformationAspect.Description; set => _userStoryInformationAspect.Description = value; }
         public UserReference Owner { get => _userStoryInformationAspect.Owner; set => _userStoryInformationAspect.Owner = value; }
@@ -25,6 +25,6 @@ namespace Domain.UserStory
         public UserReference ModifiedBy { get => _userStoryInformationAspect.ModifiedBy; set => _userStoryInformationAspect.ModifiedBy = value; }
         public DateTime CreatedOn { get => _userStoryInformationAspect.CreatedOn; set => _userStoryInformationAspect.CreatedOn = value; }
         public UserReference CreatedBy { get => _userStoryInformationAspect.CreatedBy; set => _userStoryInformationAspect.CreatedBy = value; }
-        
+        public IReference Reference { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
