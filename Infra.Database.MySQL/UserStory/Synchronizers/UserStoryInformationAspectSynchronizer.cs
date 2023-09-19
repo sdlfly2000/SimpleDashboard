@@ -14,7 +14,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
         {
             Id = aspect.Reference != null 
                 ? Guid.Parse(aspect.Reference.Code)
-                : Guid.Empty,
+                : Guid.NewGuid(),
             Title = aspect.Title,
             Description = aspect.Description,
             OwnerId = Guid.Parse(aspect.Owner.Code),

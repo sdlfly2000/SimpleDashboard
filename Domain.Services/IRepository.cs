@@ -8,6 +8,6 @@ namespace Domain.Services
 
         void Update(TAspect aspect);
 
-        IReference Add(TAspect aspect);
+        Guid Add(TAspect aspect);
     }
 }

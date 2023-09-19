@@ -1,4 +1,5 @@
-﻿using Common.Core.AOP.Cache;
+﻿using ActiveDs;
+using Common.Core.AOP.Cache;
 using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Repositories;
 using Domain.UserStory;
@@ -25,14 +26,19 @@ namespace Infra.Database.MySQL.UserStory.Repositories
             _context = context;
         }
 
-        public IReference Add(IUserStoryInformationAspect aspect)
+        public Guid Add(IUserStoryInformationAspect aspect)
         {
-            throw new NotImplementedException();
+            var entity = (UserStoryInformationEntity)_synchronizer.Synchronize(aspect);
+            _context.userStoryInformationEntities.Add(entity);
+            _context.SaveChanges();
+            return entity.Id;
         }
 
         public void Update(IUserStoryInformationAspect aspect)
         {
-            throw new NotImplementedException();
+            var entity = (UserStoryInformationEntity)_synchronizer.Synchronize(aspect);
+            _context.userStoryInformationEntities.Update(entity);
+            _context.SaveChanges();
         }
 
         public IUserStoryInformationAspect LoadById(Guid Id)
