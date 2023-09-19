@@ -4,6 +4,7 @@ using Domain.Services.UserStory.Repositories;
 using Domain.UserStory;
 using Infra.Database.MySQL.UserStory.Entities;
 using Infra.Database.MySQL.UserStory.Mappers;
+using Infra.Database.MySQL.UserStory.Synchronizers;
 
 namespace Infra.Database.MySQL.UserStory.Repositories
 {
@@ -12,10 +13,15 @@ namespace Infra.Database.MySQL.UserStory.Repositories
     {
         private readonly SimpleDashboardContext _context;
         private readonly IUserStoryInformationAspectMapper _mapper;
+        private readonly IUserStoryInformationAspectSynchronizer _synchronizer;
 
-        public UserStoryRepository(IUserStoryInformationAspectMapper mapper, SimpleDashboardContext context)
+        public UserStoryRepository(
+            IUserStoryInformationAspectMapper mapper, 
+            IUserStoryInformationAspectSynchronizer synchronizer,
+            SimpleDashboardContext context)
         {
             _mapper = mapper;
+            _synchronizer = synchronizer;
             _context = context;
         }
 

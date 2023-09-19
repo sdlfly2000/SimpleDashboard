@@ -1,6 +1,7 @@
-﻿using Domain.UserStory;
+﻿using Domain.Services;
+using Domain.UserStory;
 
-namespace Domain.Services.UserStory.Synchronizers
+namespace Infra.Database.MySQL.UserStory.Synchronizers
 {
     public interface ITaskAspectSynchronizer : ISynchronizer<TaskReference, ITaskAspect>
     {

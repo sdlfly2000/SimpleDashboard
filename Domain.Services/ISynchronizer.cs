@@ -1,11 +1,9 @@
 ﻿namespace Domain.Services
 {
-    public interface ISynchronizer<out TReference, in TAspect> 
-        where TReference : class 
+    public interface ISynchronizer<in TAspect, out TEntity> 
         where TAspect : class
+        where TEntity : class
     {
-        void Synchronize(TAspect aspect);
-
-        TReference Add(TAspect aspect);
+        TEntity Synchronize(TAspect aspect);
     }
 }
