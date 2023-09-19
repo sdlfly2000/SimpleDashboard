@@ -6,6 +6,6 @@ namespace Domain.Services.UserStory.Repositories
     {
         ITaskAspect LoadById(TaskReference id);
 
-        IList<ITaskAspect> LoadByUserStoryId(UserStoryReference userStoryId);
+        List<ITaskAspect> LoadByUserStoryId(UserStoryReference userStoryId);
     }
 }

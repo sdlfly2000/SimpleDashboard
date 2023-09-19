@@ -2,17 +2,17 @@
 
 namespace Domain.UserStory
 {
-    internal class UserStory : IUserStory
+    public class UserStoryDomain : IUserStory
     {
         private readonly IUserStoryInformationAspect _userStoryInformationAspect;
 
-        public UserStory(IUserStoryInformationAspect userStoryInformationAspect)
+        public UserStoryDomain(IUserStoryInformationAspect userStoryInformationAspect)
         {
             _userStoryInformationAspect = userStoryInformationAspect;
             Tasks = new List<ITaskAspect>();
         }
 
-        public IList<ITaskAspect> Tasks { get; }
+        public List<ITaskAspect> Tasks { get; }
 
         public UserStoryReference Id { get => _userStoryInformationAspect.Id; private set { } }
         public string Title { get => _userStoryInformationAspect.Title; set => _userStoryInformationAspect.Title = value; }

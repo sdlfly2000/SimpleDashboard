@@ -9,16 +9,25 @@ namespace Domain.Services.UserStory
     public class UserStroyGateway : IUserStroyGateway
     {
         private readonly IUserStoryInformationAspectLoader _userStoryInformationAspectLoader;
+        private readonly ITaskAspectLoader _taskAspectLoader;
 
         public UserStroyGateway(
-            IUserStoryInformationAspectLoader userStoryInformationAspectLoader)
+            IUserStoryInformationAspectLoader userStoryInformationAspectLoader,
+            ITaskAspectLoader taskAspectLoader)
         {
             _userStoryInformationAspectLoader = userStoryInformationAspectLoader;
+            _taskAspectLoader = taskAspectLoader;
         }
 
         public IUserStory GetUserStoryById(UserStoryReference Id)
         {
-            throw new NotImplementedException();
+            var userStoryInformationAspect = _userStoryInformationAspectLoader.Load(Id);
+            var userStory = new UserStoryDomain(userStoryInformationAspect);
+            var taskAspects = _taskAspectLoader.LoadByUserStroyId(Id);
+
+            userStory.Tasks.AddRange(taskAspects);
+
+            return userStory;
         }
 
         public IList<IUserStory> GetUserStroyByOwner(UserReference owner)

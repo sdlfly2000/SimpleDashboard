@@ -6,6 +6,6 @@ namespace Domain.Services.UserStory.Loaders
     {
         ITaskAspect LoadById(TaskReference id);
 
-        IList<ITaskAspect> LoadByUserStroyId(UserStoryReference id);
+        List<ITaskAspect> LoadByUserStroyId(UserStoryReference id);
     }
 }

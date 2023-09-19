@@ -19,7 +19,7 @@ namespace Domain.Services.UserStory.Loaders
             return _taskRepository.LoadById(id);
         }
 
-        public IList<ITaskAspect> LoadByUserStroyId(UserStoryReference id)
+        public List<ITaskAspect> LoadByUserStroyId(UserStoryReference id)
         {
             return _taskRepository.LoadByUserStoryId(id);
         }

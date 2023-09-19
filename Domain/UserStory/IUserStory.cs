@@ -2,6 +2,6 @@
 {
     public interface IUserStory : IUserStoryInformationAspect
     {
-        public IList<ITaskAspect> Tasks { get; }
+        public List<ITaskAspect> Tasks { get; }
     }
 }
