@@ -1,5 +1,6 @@
 ﻿using Common.Core.DependencyInjection;
 using Infra.Database.MySQL.User.Entities;
+using Infra.Database.MySQL.UserStory.Configurations;
 using Infra.Database.MySQL.UserStory.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +13,13 @@ namespace Infra.Database.MySQL
         {
         }
 
-        public DbSet<UserStoryInformationEntity> userStoryInformationEntities { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserStoryInforamtionConfiguration());
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public DbSet<UserStoryInformationEntity> UserStoryInformationEntities { get; set; }
         public DbSet<UserEntity> UserEntities { get; set; }
         public DbSet<TaskEntity> Tasks { get; set; }
     }

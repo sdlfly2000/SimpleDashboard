@@ -14,14 +14,14 @@ namespace Infra.Database.MySQL.UserStory.Mappers
             {
                 Title = entity.Title,
                 Description = entity.Description,
-                Owner = new UserReference(entity.Owner.Id.ToString()),
-                StartedOn = entity.StartedOn,
-                Period = entity.Period,
+                Owner = new UserReference(entity.OwnerId.ToString()),
+                StartedOn = entity.StartedOn ?? default(DateTime),
+                Period = entity.Period ?? default(TimeSpan),
                 Status = new UserStroyStatus(entity.Status),
-                ModifiedOn = entity.ModifiedOn,
-                ModifiedBy = new UserReference(entity.ModifiedBy.Id.ToString()),
-                CreatedOn = entity.CreatedOn,
-                CreatedBy = new UserReference(entity.CreatedBy.Id.ToString())
+                ModifiedOn = entity.ModifiedOn ?? default(DateTime),
+                ModifiedBy = new UserReference(entity.ModifiedById.ToString()),
+                CreatedOn = entity.CreatedOn ?? default(DateTime),
+                CreatedBy = new UserReference(entity.CreatedById.ToString())
             };
         }
     }

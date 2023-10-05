@@ -27,7 +27,7 @@ namespace Infra.Database.MySQL.UserStory.Repositories
         public Guid Add(IUserStoryInformationAspect aspect)
         {
             var entity = (UserStoryInformationEntity)_synchronizer.Synchronize(aspect);
-            _context.userStoryInformationEntities.Add(entity);
+            _context.UserStoryInformationEntities.Add(entity);
             _context.SaveChanges();
             return entity.Id;
         }
@@ -35,7 +35,7 @@ namespace Infra.Database.MySQL.UserStory.Repositories
         public void Update(IUserStoryInformationAspect aspect)
         {
             var entity = (UserStoryInformationEntity)_synchronizer.Synchronize(aspect);
-            _context.userStoryInformationEntities.Update(entity);
+            _context.UserStoryInformationEntities.Update(entity);
             _context.SaveChanges();
         }
 

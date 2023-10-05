@@ -29,7 +29,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard.Core", "Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard.Common", "Common\SimpleDashboard.Common.csproj", "{38BBDC8F-0EA1-46EC-B668-66C0A84F3B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDashboard.Extentions", "SimpleDashboard.Extentions\SimpleDashboard.Extentions.csproj", "{4C30F5A7-A2FF-4BEF-BAA0-76DD3D34D4CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard.Extentions", "SimpleDashboard.Extentions\SimpleDashboard.Extentions.csproj", "{4C30F5A7-A2FF-4BEF-BAA0-76DD3D34D4CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Scripts", "SQL Scripts", "{F05C4097-0C29-4409-92B6-FAA1D6F68C7D}"
+	ProjectSection(SolutionItems) = preProject
+		TablesCreation.sql = TablesCreation.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B415415F-1457-4D48-AF25-9EEEB7C1C1B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infrastructure", "{C450F6E6-0774-4C93-AB03-3DA7A0FF0CB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Database.MySQL.Test", "Infra.Database.MySQL.Test\Infra.Database.MySQL.Test.csproj", "{0DCA1973-0750-4161-B1ED-64B0FC11BC7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +84,10 @@ Global
 		{4C30F5A7-A2FF-4BEF-BAA0-76DD3D34D4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C30F5A7-A2FF-4BEF-BAA0-76DD3D34D4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C30F5A7-A2FF-4BEF-BAA0-76DD3D34D4CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DCA1973-0750-4161-B1ED-64B0FC11BC7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DCA1973-0750-4161-B1ED-64B0FC11BC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DCA1973-0750-4161-B1ED-64B0FC11BC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DCA1973-0750-4161-B1ED-64B0FC11BC7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +102,9 @@ Global
 		{92DF49BB-2DD4-463E-B849-459BABEFCBC7} = {B7F3C2D7-E84D-4C89-9DCC-C63E27D1DA2F}
 		{38BBDC8F-0EA1-46EC-B668-66C0A84F3B03} = {B7F3C2D7-E84D-4C89-9DCC-C63E27D1DA2F}
 		{4C30F5A7-A2FF-4BEF-BAA0-76DD3D34D4CA} = {B7F3C2D7-E84D-4C89-9DCC-C63E27D1DA2F}
+		{F05C4097-0C29-4409-92B6-FAA1D6F68C7D} = {C867AFCD-E372-4B4A-80F6-FD0C5AC25ACC}
+		{C450F6E6-0774-4C93-AB03-3DA7A0FF0CB6} = {B415415F-1457-4D48-AF25-9EEEB7C1C1B2}
+		{0DCA1973-0750-4161-B1ED-64B0FC11BC7C} = {C450F6E6-0774-4C93-AB03-3DA7A0FF0CB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76DC2A6F-E5B6-47E5-BA65-5513D96D941F}
