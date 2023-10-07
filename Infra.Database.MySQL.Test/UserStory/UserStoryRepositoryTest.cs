@@ -14,7 +14,7 @@ namespace Infra.Database.MySQL.Test.UserStory
         }
 
         [TestMethod, TestCategory("SystemTest")]
-        public void LoadDataFromDB()
+        public void Given_UserStoryId_When_LoadById_Then_UserStroyInformationAspect_Return()
         {
             string[] args = { "%LAUNCHER_ARGS%" };
 
