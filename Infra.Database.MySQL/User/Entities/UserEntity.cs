@@ -1,5 +1,4 @@
 ﻿using Common.Core.Data.Sql;
-using Infra.Database.MySQL.UserStory.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Infra.Database.MySQL.User.Entities
@@ -8,9 +7,6 @@ namespace Infra.Database.MySQL.User.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
-
-        public virtual ICollection<UserStoryInformationEntity> UserStoryInforamtions { get; set;}
-    
+        public string Name { get; set; }    
     }
 }

@@ -4,6 +4,7 @@ using Domain.UserStory;
 using Infra.Database.MySQL.UserStory.Entities;
 using Infra.Database.MySQL.UserStory.Mappers;
 using Infra.Database.MySQL.UserStory.Synchronizers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Database.MySQL.UserStory.Repositories
 {
@@ -41,7 +42,11 @@ namespace Infra.Database.MySQL.UserStory.Repositories
 
         public IUserStoryInformationAspect LoadById(Guid Id)
         {
-            return _mapper.Map(_context.Set<UserStoryInformationEntity>().Find(Id));
+            var entity = _context.Set<UserStoryInformationEntity>()
+                .Include(ent => ent.Owner)
+                .Single(ent => ent.Id.Equals(Id));
+
+            return _mapper.Map(entity);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Infra.Database.MySQL.UserStory.Configurations
             builder.HasKey(information => information.Id);
 
             builder.HasOne(information => information.Owner)
-                .WithMany(user => user.UserStoryInforamtions)
+                .WithMany()
                 .HasForeignKey(information => information.OwnerId);
             builder.HasOne(information => information.ModifiedBy)
                 .WithMany()
