@@ -15,7 +15,7 @@ namespace Infra.Database.MySQL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserStoryInforamtionConfiguration());
+            modelBuilder.ApplyConfiguration(new UserStoryInforamtionEntityConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

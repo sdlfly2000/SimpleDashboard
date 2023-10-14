@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infra.Database.MySQL.UserStory.Configurations
 {
-    internal class UserStoryInforamtionConfiguration : IEntityTypeConfiguration<UserStoryInformationEntity>
+    internal class UserStoryInforamtionEntityConfiguration : IEntityTypeConfiguration<UserStoryInformationEntity>
     {
         public void Configure(EntityTypeBuilder<UserStoryInformationEntity> builder)
         {
