@@ -19,10 +19,12 @@ namespace Infra.Database.MySQL.UserStory.Configurations
             builder.Property(t => t.ModifiedOn).HasColumnType("DATETIME2");
             builder.Property(t => t.ModifiedById).HasColumnType("NVARCHAR").HasMaxLength(36);
             builder.Property(t => t.CreatedOn).HasColumnType("DATETIME2");
-            builder.Property(t => t.CreatedBy).HasColumnType("NVARCHAR").HasMaxLength(36);
+            builder.Property(t => t.CreatedById).HasColumnType("NVARCHAR").HasMaxLength(36);
             builder.Property(t => t.UserStoryId).HasColumnType("NVARCHAR").HasMaxLength(36);
 
             builder.HasKey(t => t.Id);
+
+            #region Relationships
 
             builder.HasOne(t => t.Owner)
                 .WithMany()
@@ -40,5 +42,7 @@ namespace Infra.Database.MySQL.UserStory.Configurations
                 .WithMany()
                 .HasForeignKey(t => t.UserStoryId);
         }
+
+        #endregion
     }
 }

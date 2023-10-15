@@ -1,8 +1,9 @@
 ﻿using Domain.Services.UserStory.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleDashboard;
+using SimpleDashboard.Common;
 
-namespace Infra.Database.MySQL.Test.UserStory
+namespace Infra.Database.MySQL.Test.UserStory.Repositories
 {
     [TestClass]
     public class UserStoryRepositoryTest
@@ -10,10 +11,10 @@ namespace Infra.Database.MySQL.Test.UserStory
         [TestInitialize]
         public void TestInitialize()
         {
-            
+
         }
 
-        [TestMethod, TestCategory("SystemTest")]
+        [TestMethod, TestCategory(nameof(TestCategoryEnum.SystemTest))]
         public void Given_UserStoryId_When_LoadById_Then_UserStroyInformationAspect_Return()
         {
             string[] args = { "%LAUNCHER_ARGS%" };

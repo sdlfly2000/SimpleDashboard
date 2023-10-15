@@ -14,16 +14,16 @@ namespace Infra.Database.MySQL.UserStory.Mappers
             return new TaskAspect
             {
                 Reference = new TaskReference(entity.Id.ToString()),
-                Title = entity.Title,
-                Description = entity.Description,
-                Owner = new UserReference(entity.OwnerId.ToString()),
-                StartedOn = entity.StartedOn,
-                Period  = entity.Period,
+                Title = entity.Title ?? string.Empty,
+                Description = entity.Description ?? string.Empty,
+                Owner = new UserReference(entity.OwnerId?.ToString()),
+                StartedOn = entity.StartedOn ?? default(DateTime),
+                Period  = entity.Period ?? default(TimeSpan),
                 Status = TaskStatus.Parse(entity.Status),
-                ModifiedOn = entity.ModifiedOn,
-                ModifiedBy = new UserReference(entity.ModifiedById.ToString()),
-                CreatedOn = entity.CreatedOn,
-                CreatedBy = new UserReference(entity.CreatedById.ToString())
+                ModifiedOn = entity.ModifiedOn ?? default(DateTime),
+                ModifiedBy = new UserReference(entity.ModifiedById?.ToString()),
+                CreatedOn = entity.CreatedOn ?? default(DateTime),
+                CreatedBy = new UserReference(entity.CreatedById?.ToString())
             };
         }
     }

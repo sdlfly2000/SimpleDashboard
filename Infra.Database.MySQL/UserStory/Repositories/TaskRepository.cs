@@ -29,7 +29,7 @@ namespace Infra.Database.MySQL.UserStory.Repositories
             return _context.Set<TaskEntity>()
                .Where(entity => entity.UserStoryId.Equals(userStoryGuid))
                .Select(entity => _mapper.Map(entity))
-               .ToList();
+               .ToList(); 
         }
     }
 }
