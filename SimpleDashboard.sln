@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Database.MySQL.Test", "Infra.Database.MySQL.Test\Infra.Database.MySQL.Test.csproj", "{0DCA1973-0750-4161-B1ED-64B0FC11BC7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.WebApi", "Presentation.WebApi\Presentation.WebApi.csproj", "{091394F7-5A6B-40B2-9F23-C55BB8978634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.Web.Api", "Presentation.WebApi\Presentation.Web.Api.csproj", "{091394F7-5A6B-40B2-9F23-C55BB8978634}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Presentation.Web.Angular", "Presentation.Web.Angular\Presentation.Web.Angular.esproj", "{6B743A04-77A8-41D7-B20E-A134FC7EF26A}"
 EndProject

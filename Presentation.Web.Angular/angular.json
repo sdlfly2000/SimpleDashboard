@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -66,7 +67,10 @@
               "browserTarget": "Presentation.Web.Angular:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "src/proxy.conf.js"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -95,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c69aa28d-edb6-4353-bdf6-bc5f33ed601c"
   }
 }
