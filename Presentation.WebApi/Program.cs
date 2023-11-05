@@ -1,7 +1,5 @@
+using Common.Core.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Presentation.WebApi;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,24 +12,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<JWTOptions>(builder.Configuration.GetSection("JWT"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(option =>
-                {
-                    var jwtOpt = builder.Configuration.GetSection("JWT").Get<JWTOptions>();
-                    byte[] keyBytes = Encoding.UTF8.GetBytes(jwtOpt.SigningKey);
-                    var secKey = new SymmetricSecurityKey(keyBytes);
-                    option.TokenValidationParameters = new()
-                    {
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = secKey
-                    };
-                });
+                .AddJwtCusScheme(builder.Configuration.GetSection("JWT").Get<JWTOptions>()!);
 
 builder.Services.AddCors(option =>
 {
-    option.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader());
+    option.AddPolicy("AllowPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader());
 });
 
 var app = builder.Build();
@@ -45,7 +30,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+app.UseCors("AllowPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();

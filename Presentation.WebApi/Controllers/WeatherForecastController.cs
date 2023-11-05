@@ -6,6 +6,7 @@ namespace Presentation.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("AllowPolicy")]
     [Authorize]
     public class WeatherForecastController : ControllerBase
     {
@@ -22,7 +23,6 @@ namespace Presentation.WebApi.Controllers
         }
 
         [HttpGet]
-        [EnableCors("AllowAll")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -11,10 +11,13 @@ import { AuthService } from '../auth.service';
 export class MainComponent {
   title: string = "Main Page";
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute) {
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private authService: AuthService, @Inject("BASE_URL") private baseUrl: string) {
     let jwtToken = route.snapshot.queryParamMap.get("jwtToken");
-    if (jwtToken != null) AuthService.JwtToken = jwtToken;
+    if (jwtToken != null) this.authService.JwtToken = jwtToken;
 
-    httpClient.get<string>("api/WeatherForecast").subscribe(response => console.log(response));
+  }
+
+  onClick() {
+    this.httpClient.get<string>(this.baseUrl + "api/WeatherForecast").subscribe(response => console.log(response));
   }
 }
