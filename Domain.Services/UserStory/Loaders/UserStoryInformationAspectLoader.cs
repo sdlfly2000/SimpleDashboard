@@ -1,5 +1,6 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Repositories;
+using Domain.User;
 using Domain.UserStory;
 
 namespace Domain.Services.UserStory.Loaders
@@ -17,6 +18,11 @@ namespace Domain.Services.UserStory.Loaders
         public IUserStoryInformationAspect Load(UserStoryReference Id)
         {
             return _userStoryRepository.LoadById(Guid.Parse(Id.Code));
+        }
+
+        public IList<IUserStoryInformationAspect> LoadByOwner(UserReference owner)
+        {
+            return _userStoryRepository.LoadByOwnerId(Guid.Parse(owner.Code));
         }
     }
 }

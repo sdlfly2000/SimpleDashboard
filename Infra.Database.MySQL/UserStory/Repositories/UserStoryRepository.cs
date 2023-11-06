@@ -48,5 +48,14 @@ namespace Infra.Database.MySQL.UserStory.Repositories
 
             return _mapper.Map(entity);
         }
+
+        public IList<IUserStoryInformationAspect> LoadByOwnerId(Guid id)
+        {
+            return _context
+                .Set<UserStoryInformationEntity>()
+                .Where(entity => entity.OwnerId.Equals(id))
+                .Select(_mapper.Map)
+                .ToList();
+        }
     }
 }

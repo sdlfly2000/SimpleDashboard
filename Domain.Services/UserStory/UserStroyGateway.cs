@@ -32,7 +32,15 @@ namespace Domain.Services.UserStory
 
         public IList<IUserStory> GetUserStroyByOwner(UserReference owner)
         {
-            throw new NotImplementedException();
+            return _userStoryInformationAspectLoader.LoadByOwner(owner)
+                .Select(
+                aspect => 
+                {
+                    var userStory = new UserStoryDomain(aspect);
+                    var tasks = _taskAspectLoader.LoadByUserStroyId((aspect.Reference as UserStoryReference)!);
+                    userStory.Tasks.AddRange(tasks);
+                    return userStory;
+                }).ToList<IUserStory>();
         }
     }
 }
