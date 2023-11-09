@@ -1,5 +1,7 @@
 using Common.Core.Authentication;
+using Common.Core.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,8 @@ builder.Services.AddCors(option =>
 {
     option.AddPolicy("AllowPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader());
 });
+
+builder.Services.RegisterDomain("Application.Services", "Domain.Services", "Infra.Database.MySQL");
 
 var app = builder.Build();
 
