@@ -1,7 +1,7 @@
 using Common.Core.Authentication;
 using Common.Core.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Reflection;
+using SimpleDashboard.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +20,8 @@ builder.Services.AddCors(option =>
 {
     option.AddPolicy("AllowPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader());
 });
-
+builder.Services.AddMemoryCache();
+builder.Services.AddMySQLDatabase(builder.Configuration.GetConnectionString("SimpleDashboard")!);
 builder.Services.RegisterDomain("Application.Services", "Domain.Services", "Infra.Database.MySQL");
 
 var app = builder.Build();

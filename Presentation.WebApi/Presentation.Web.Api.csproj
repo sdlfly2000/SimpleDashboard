@@ -15,7 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application.Services\Application.Services.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Core\SimpleDashboard.Core.csproj" />
+    <ProjectReference Include="..\SimpleDashboard.Extentions\SimpleDashboard.Extentions.csproj" />
   </ItemGroup>
 
 </Project>

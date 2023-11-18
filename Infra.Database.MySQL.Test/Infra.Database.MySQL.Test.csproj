@@ -16,4 +16,9 @@
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infra.Database.MySQL\Infra.Database.MySQL.csproj" />
+    <ProjectReference Include="..\Presentation.WebApi\Presentation.Web.Api.csproj" />
+  </ItemGroup>
+
 </Project>
