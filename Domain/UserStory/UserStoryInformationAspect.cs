@@ -5,6 +5,10 @@ namespace Domain.UserStory
 {
     public class UserStoryInformationAspect : IUserStoryInformationAspect
     {
+        public UserStoryInformationAspect() : this(new UserStoryReference(Guid.NewGuid().ToString()))
+        {
+        }
+
         public UserStoryInformationAspect(UserStoryReference reference)
         {
             Reference = reference;
