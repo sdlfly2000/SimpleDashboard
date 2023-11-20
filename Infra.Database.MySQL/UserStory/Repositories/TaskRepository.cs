@@ -20,7 +20,7 @@ namespace Infra.Database.MySQL.UserStory.Repositories
 
         public ITaskAspect LoadById(TaskReference id)
         {
-            return _mapper.Map(_context.Set<TaskEntity>().Find(id));
+            return _mapper.Map(_context.Set<TaskEntity>().Find(Guid.Parse(id.Code)));
         }
 
         public List<ITaskAspect> LoadByUserStoryId(UserStoryReference userStoryId)
