@@ -14,7 +14,7 @@ export class AuthFailureInterceptor implements HttpInterceptor {
         tap({
           error: (err) => {
             if (err instanceof HttpErrorResponse && err.status == 401) {
-              window.location.href = "https://homeserver/login?returnUrl=" + this.baseUrl;
+              window.location.href = "https://homeserver/#/login?returnUrl=" + this.baseUrl;
             }
           }
         })
