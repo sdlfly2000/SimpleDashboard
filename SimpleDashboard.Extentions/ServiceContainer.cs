@@ -10,8 +10,8 @@ namespace SimpleDashboard.Extentions
             var container = new ServiceCollection();
 
             container.AddMemoryCache();
-            container.AddMySQLDatabase("server=homeserver;database=SimpleDashboard;uid=sdlfly2000;password=sdl@1215;");
-            container.RegisterDomain("Application.Services", "Domain.Services", "Infra.Database.MySQL");
+            container.AddSQLServerDatabase("server=homeserver;database=SimpleDashboard;uid=sdlfly2000;password=sdl@1215;");
+            container.RegisterDomain("Application.Services", "Domain.Services", "Infra.Database.SQLServer");
             return container;
         }
     }

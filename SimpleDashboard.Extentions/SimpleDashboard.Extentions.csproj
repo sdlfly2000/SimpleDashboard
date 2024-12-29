@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infra.Database.MySQL\Infra.Database.MySQL.csproj" />
+    <ProjectReference Include="..\Infra.Database.SQLServer\Infra.Database.SQLServer.csproj" />
   </ItemGroup>
 
 </Project>

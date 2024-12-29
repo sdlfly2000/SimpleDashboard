@@ -2,9 +2,9 @@
 using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Synchronizers;
 using Domain.UserStory;
-using Infra.Database.MySQL.UserStory.Entities;
+using Infra.Database.SQLServer.UserStory.Entities;
 
-namespace Infra.Database.MySQL.UserStory.Synchronizers;
+namespace Infra.Database.SQLServer.UserStory.Synchronizers;
 
 [ServiceLocate(typeof(IUserStoryInformationAspectSynchronizer))]
 public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspectSynchronizer
@@ -13,7 +13,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
     {
         return new UserStoryInformationEntity
         {
-            Id = aspect.Reference != null 
+            Id = aspect.Reference != null
                 ? Guid.Parse(aspect.Reference.Code)
                 : Guid.NewGuid(),
             Title = aspect.Title,

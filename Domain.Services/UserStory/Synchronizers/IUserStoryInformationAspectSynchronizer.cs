@@ -1,8 +1,7 @@
 ﻿using Common.Core.Data.Sql;
-using Domain.Services;
 using Domain.UserStory;
 
-namespace Infra.Database.MySQL.UserStory.Synchronizers
+namespace Domain.Services.UserStory.Synchronizers
 {
     public interface IUserStoryInformationAspectSynchronizer : ISynchronizer<IUserStoryInformationAspect, IEntity>
     {

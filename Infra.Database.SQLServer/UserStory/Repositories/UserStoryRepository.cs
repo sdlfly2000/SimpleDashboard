@@ -2,11 +2,12 @@
 using Domain.Services.UserStory.Repositories;
 using Domain.Services.UserStory.Synchronizers;
 using Domain.UserStory;
-using Infra.Database.MySQL.UserStory.Entities;
-using Infra.Database.MySQL.UserStory.Mappers;
+using Infra.Database.SQLServer;
+using Infra.Database.SQLServer.UserStory.Entities;
+using Infra.Database.SQLServer.UserStory.Mappers;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infra.Database.MySQL.UserStory.Repositories
+namespace Infra.Database.SQLServer.UserStory.Repositories
 {
     [ServiceLocate(typeof(IUserStoryRepository))]
     public class UserStoryRepository : IUserStoryRepository
@@ -16,7 +17,7 @@ namespace Infra.Database.MySQL.UserStory.Repositories
         private readonly IUserStoryInformationAspectSynchronizer _synchronizer;
 
         public UserStoryRepository(
-            IUserStoryInformationAspectMapper mapper, 
+            IUserStoryInformationAspectMapper mapper,
             IUserStoryInformationAspectSynchronizer synchronizer,
             SimpleDashboardContext context)
         {

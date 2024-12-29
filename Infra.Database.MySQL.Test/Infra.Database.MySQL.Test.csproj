@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infra.Database.MySQL\Infra.Database.MySQL.csproj" />
     <ProjectReference Include="..\Presentation.WebApi\Presentation.Web.Api.csproj" />
   </ItemGroup>
 
