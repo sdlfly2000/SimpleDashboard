@@ -1,9 +1,9 @@
+using AuthService.Middlewares;
 using Common.Core.Authentication;
 using Common.Core.DependencyInjection;
 using Infra.Database.SQLServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using SimpleDashboard.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
 
