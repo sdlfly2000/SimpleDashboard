@@ -9,7 +9,8 @@ import { AuthFailureInterceptor } from './auth-failure.interceptor';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { AuthService } from './auth.service';
+import { QueryStringService } from '../services/shared.QueryString.service';
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthService } from './auth.service';
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthFailureInterceptor, multi: true},
     { provide: "BASE_URL", useValue: document.getElementsByTagName('base')[0].href },
-    { provide: AuthService }
+    { provide: AuthService },
+    { provide: QueryStringService }
   ],
   bootstrap: [AppComponent]
 })
