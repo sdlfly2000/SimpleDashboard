@@ -21,3 +21,9 @@
 
 # step build image
 ./CreateDockerImage.ps1
+
+# step stop Container
+./StopDockerContainer.ps1
+
+# step run Container
+./RunDockerImage.ps1
