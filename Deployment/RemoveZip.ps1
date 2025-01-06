@@ -12,4 +12,5 @@ $SessionID = New-SSHSession -ComputerName $ComputerName -Credential $Credentials
 $stream = $SessionID.Session.CreateShellStream("PS-SSH", 0, 0, 0, 0, 1000)
 $result = Invoke-SSHStreamExpectSecureAction -ShellStream $stream -Command $Command -ExpectString $ExpectedString -SecureAction $secpasswd
 Write-Host "Remove SimpleDashboard.zip: $result" -ForegroundColor DarkCyan
+$stream.Read()
 

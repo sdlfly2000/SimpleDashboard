@@ -11,5 +11,6 @@ $Credentials = New-Object System.Management.Automation.PSCredential($User, $secp
 $SessionID = New-SSHSession -ComputerName $ComputerName -Credential $Credentials #Connect Over SSH
 $stream = $SessionID.Session.CreateShellStream("PS-SSH", 0, 0, 0, 0, 1000)
 $result = Invoke-SSHStreamExpectSecureAction -ShellStream $stream -Command $Command -ExpectString $ExpectedString -SecureAction $secpasswd
+$stream.Read()
 
 
