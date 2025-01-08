@@ -14,3 +14,8 @@ popd
 Write-Host "Copy Dockerfile" -ForegroundColor DarkCyan
 cp ./Dockerfile ../Artifacts/SimpleDashboard/
 popd
+
+# Copy Certificate
+Write-Host "Copy Certificate" -ForegroundColor DarkCyan
+cp ./certificate/SimpleDashboardCert.pfx ../Artifacts/SimpleDashboard/
+popd

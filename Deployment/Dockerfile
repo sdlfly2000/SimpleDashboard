@@ -7,4 +7,8 @@ COPY . .
 EXPOSE 80
 EXPOSE 443
 
-ENTRYPOINT ["dotnet", "Presentation.Web.Api.dll","--urls","http://*:80"]
+ENV ASPNETCORE_URLS=https://+:443;http://+:80 
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path=SimpleDashboardCert.pfx
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password=sdl@1215
+
+ENTRYPOINT ["dotnet", "Presentation.Web.Api.dll"]
