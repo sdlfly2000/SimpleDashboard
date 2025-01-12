@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { AuthFailureInterceptor } from './auth-failure.interceptor';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -12,26 +12,20 @@ import { MainComponent } from './main/main.component';
 import { QueryStringService } from '../services/shared.QueryString.service';
 import { AuthService } from '../services/auth.service';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      { path: '', component: MainComponent, pathMatch: 'full' },
-    ]),
-  ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthFailureInterceptor, multi: true},
-    { provide: "BASE_URL", useValue: document.getElementsByTagName('base')[0].href },
-    { provide: AuthService },
-    { provide: QueryStringService }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavMenuComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        RouterModule.forRoot([
+            { path: '', component: MainComponent, pathMatch: 'full' },
+        ])], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: AuthFailureInterceptor, multi: true },
+        { provide: "BASE_URL", useValue: document.getElementsByTagName('base')[0].href },
+        { provide: AuthService },
+        { provide: QueryStringService },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
