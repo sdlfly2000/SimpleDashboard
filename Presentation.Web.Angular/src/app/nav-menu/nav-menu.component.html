@@ -15,15 +15,11 @@
            [ngClass]="{ show: isExpanded }">
 
         <ul class="navbar-nav flex-grow" *ngIf="!IsLogin">
-          <li class="nav-item"
-              [routerLinkActive]="['link-active']"
-              [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Login</a>
+          <li class="nav-item">
+            <p-button label="Login" [link]="true" (onClick)="GoToLogin()" />
           </li>
-          <li class="nav-item"
-              [routerLinkActive]="['link-active']"
-              [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/register']">Register</a>
+          <li class="nav-item">
+            <p-button label="Register" [link]="true" (onClick)="GoToRegister()" />
           </li>
         </ul>
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 export class NavMenuComponent {
   isExpanded = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, @Inject("BASE_URL") private baseUrl: string) {
 
   }
 
@@ -23,6 +23,14 @@ export class NavMenuComponent {
 
   Logout() {
     this.authService.CleanLocalCache();
+  }
+
+  GoToLogin() {
+    window.location.href = "https://homeserver/#/login?returnUrl=" + this.baseUrl;
+  }
+
+  GoToRegister() {
+    window.location.href = "https://homeserver";
   }
 
   collapse() {
