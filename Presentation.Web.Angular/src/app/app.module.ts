@@ -16,6 +16,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 
+import { ButtonModule } from 'primeng/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import Aura from '@primeng/themes/aura';
   imports: [
     BrowserModule,
     FormsModule,
+    ButtonModule, 
     RouterModule.forRoot([
         { path: '', component: MainComponent, pathMatch: 'full' },
     ])

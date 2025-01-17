@@ -17,6 +17,14 @@ export class NavMenuComponent {
     return this.authService.IsValidLogin;
   }
 
+  get DisplayUserName(): string | null {
+    return this.authService.UserDisplayName;
+  }
+
+  Logout() {
+    this.authService.CleanLocalCache();
+  }
+
   collapse() {
     this.isExpanded = false;
   }
