@@ -16,8 +16,7 @@ namespace Domain.Services.UserStory
 
         public UserStoryReference Add(IUserStory userStory)
         {
-            var userStoryGUID = _repository.Add(userStory);
-            return new UserStoryReference(userStoryGUID.ToString());
+            throw new NotImplementedException();
         }
 
         public void Persist(IUserStory userStory)

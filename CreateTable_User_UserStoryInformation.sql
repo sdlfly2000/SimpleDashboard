@@ -7,12 +7,12 @@ create table UserEntities (
 );
 
 create table UserStoryInformation (
-	Id nvarchar(36),
+	Id BIGINT IDENTITY(1,1),
     Title nvarchar(255),
     Description nvarchar(max),
     OwnerId nvarchar(36),
     StartedOn datetime,
-    Period time,
+    Period BIGINT,
     Status nvarchar(20),
     ModifiedOn datetime,
     ModifiedById nvarchar(36),

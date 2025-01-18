@@ -8,6 +8,6 @@ namespace Domain.Services
 
         void Update(TAspect aspect);
 
-        Guid Add(TAspect aspect);
+        void Add(TAspect aspect);
     }
 }

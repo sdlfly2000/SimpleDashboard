@@ -5,6 +5,6 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
 {
     public interface IUserStoryInformationAspectMapper
     {
-        IUserStoryInformationAspect Map(UserStoryInformationEntity entity);
+        IUserStoryInformationAspect Map(UserStoryInformation entity);
     }
 }

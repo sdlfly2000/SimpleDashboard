@@ -1,12 +1,11 @@
-﻿using Common.Core.Data.Sql;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Infra.Database.SQLServer.User.Entities
+namespace Infra.Database.SQLServer.User.Entities;
+
+public partial class UserEntity
 {
-    public class UserEntity : IEntity
-    {
-        [Key]
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-    }
+    public string Id { get; set; } = null!;
+
+    public string? Name { get; set; }
 }

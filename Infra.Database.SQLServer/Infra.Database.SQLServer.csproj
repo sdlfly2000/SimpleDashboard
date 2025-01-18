@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="UserStory\Entities\" />
   </ItemGroup>
 
   <ItemGroup>

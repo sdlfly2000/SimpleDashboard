@@ -8,7 +8,7 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
     [ServiceLocate(typeof(IUserStoryInformationAspectMapper))]
     public class UserStoryInformationAspectMapper : IUserStoryInformationAspectMapper
     {
-        public IUserStoryInformationAspect Map(UserStoryInformationEntity entity)
+        public IUserStoryInformationAspect Map(UserStoryInformation entity)
         {
             return new UserStoryInformationAspect(new UserStoryReference(entity.Id.ToString()))
             {
@@ -16,7 +16,6 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
                 Description = entity.Description,
                 Owner = new UserReference(entity.OwnerId.ToString()),
                 StartedOn = entity.StartedOn ?? default,
-                Period = entity.Period ?? default,
                 Status = new UserStroyStatus(entity.Status),
                 ModifiedOn = entity.ModifiedOn ?? default,
                 ModifiedBy = new UserReference(entity.ModifiedById.ToString()),

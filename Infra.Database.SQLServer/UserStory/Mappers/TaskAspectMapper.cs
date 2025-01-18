@@ -1,7 +1,7 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.User;
 using Domain.UserStory;
-using Infra.Database.SQLServer.UserStory.Entities;
+using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
 using TaskStatus = Domain.UserStory.TaskStatus;
 
 namespace Infra.Database.SQLServer.UserStory.Mappers
@@ -9,8 +9,12 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
     [ServiceLocate(typeof(ITaskAspectMapper))]
     public class TaskAspectMapper : ITaskAspectMapper
     {
-        public ITaskAspect Map(TaskEntity entity)
+        public ITaskAspect? Map(Task? entity)
         {
+            if (entity == null) {
+                return default;
+            }
+
             return new TaskAspect
             {
                 Reference = new TaskReference(entity.Id.ToString()),
@@ -18,7 +22,7 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
                 Description = entity.Description ?? string.Empty,
                 Owner = new UserReference(entity.OwnerId?.ToString()),
                 StartedOn = entity.StartedOn ?? default,
-                Period = entity.Period ?? default,
+                Period = entity.Period.HasValue ? TimeSpan.FromTicks(entity.Period.Value) : default,
                 Status = TaskStatus.Parse(entity.Status),
                 ModifiedOn = entity.ModifiedOn ?? default,
                 ModifiedBy = new UserReference(entity.ModifiedById?.ToString()),

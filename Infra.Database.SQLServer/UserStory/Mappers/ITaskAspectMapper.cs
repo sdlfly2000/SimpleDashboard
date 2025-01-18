@@ -1,10 +1,10 @@
 ﻿using Domain.UserStory;
-using Infra.Database.SQLServer.UserStory.Entities;
+using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
 
 namespace Infra.Database.SQLServer.UserStory.Mappers
 {
     public interface ITaskAspectMapper
     {
-        ITaskAspect Map(TaskEntity entity);
+        ITaskAspect Map(Task entity);
     }
 }
