@@ -1,6 +1,13 @@
 <body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
+  <div class="layout-body">
+    <div class="layout-main-nav">
+      <app-nav-menu></app-nav-menu>
+    </div>
+    <div class="layout-main-body">
+      <app-nav-sitemap class="layout-sidemap"></app-nav-sitemap>
+      <div class="layout-main">
+          <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </body>

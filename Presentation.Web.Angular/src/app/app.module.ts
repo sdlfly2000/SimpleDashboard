@@ -17,11 +17,13 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 
 import { ButtonModule } from 'primeng/button';
+import { NavSiteMapComponent } from './nav-sitemap/nav-sitemap.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    NavSiteMapComponent
   ],
   bootstrap: [AppComponent],
   imports: [

@@ -1,23 +1,23 @@
 use SimpleDashboard;
 
 create table UserEntities (
-	Id nvarchar(50),
+	Id nvarchar(36),
     Name nvarchar(255),
     primary key (Id)
 );
 
 create table UserStoryInformation (
-	Id nvarchar(50),
+	Id nvarchar(36),
     Title nvarchar(255),
-    Description nvarchar(255),
-    OwnerId nvarchar(50),
+    Description nvarchar(max),
+    OwnerId nvarchar(36),
     StartedOn datetime,
     Period time,
     Status nvarchar(20),
     ModifiedOn datetime,
-    ModifiedById nvarchar(50),
+    ModifiedById nvarchar(36),
 	CreatedOn datetime,
-    CreatedById nvarchar(50),
+    CreatedById nvarchar(36),
     primary key (Id),
     foreign key (OwnerId) references UserEntities(Id),
     foreign key (ModifiedById) references UserEntities(Id),
