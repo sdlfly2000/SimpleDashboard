@@ -43,6 +43,8 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Presentation.Web.Angular", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Database.SQLServer", "Infra.Database.SQLServer\Infra.Database.SQLServer.csproj", "{3AE138FC-D635-464C-80DE-0DB41B49F3EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Database.SQLServer.Test", "Infra.Database.SQLServer.Test\Infra.Database.SQLServer.Test.csproj", "{2BCACDF8-59BE-418E-ABE5-9D0DBC4FD53D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{3AE138FC-D635-464C-80DE-0DB41B49F3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AE138FC-D635-464C-80DE-0DB41B49F3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AE138FC-D635-464C-80DE-0DB41B49F3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BCACDF8-59BE-418E-ABE5-9D0DBC4FD53D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BCACDF8-59BE-418E-ABE5-9D0DBC4FD53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BCACDF8-59BE-418E-ABE5-9D0DBC4FD53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BCACDF8-59BE-418E-ABE5-9D0DBC4FD53D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{091394F7-5A6B-40B2-9F23-C55BB8978634} = {3B090057-1B67-4FF0-85E3-179D03B9FFDD}
 		{6B743A04-77A8-41D7-B20E-A134FC7EF26A} = {3B090057-1B67-4FF0-85E3-179D03B9FFDD}
 		{3AE138FC-D635-464C-80DE-0DB41B49F3EE} = {C867AFCD-E372-4B4A-80F6-FD0C5AC25ACC}
+		{2BCACDF8-59BE-418E-ABE5-9D0DBC4FD53D} = {C450F6E6-0774-4C93-AB03-3DA7A0FF0CB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76DC2A6F-E5B6-47E5-BA65-5513D96D941F}
