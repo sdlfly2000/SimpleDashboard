@@ -5,8 +5,8 @@ namespace Domain.Services.UserStory
 {
     internal interface IUserStroyGateway
     {
-        IUserStory GetUserStoryById(UserStoryReference Id);
+        Task<IUserStory> GetUserStoryById(UserStoryReference Id);
 
-        IList<IUserStory> GetUserStroyByOwner(UserReference owner);
+        Task<IList<IUserStory>> GetUserStroyByOwner(UserReference owner);
     }
 }

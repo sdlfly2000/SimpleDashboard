@@ -4,8 +4,8 @@ namespace Domain.Services.UserStory.Loaders
 {
     public interface ITaskAspectLoader
     {
-        ITaskAspect LoadById(TaskReference id);
+        Task<ITaskAspect> LoadById(TaskReference id);
 
-        List<ITaskAspect> LoadByUserStroyId(UserStoryReference id);
+        Task<List<ITaskAspect>> LoadByUserStroyId(UserStoryReference id);
     }
 }

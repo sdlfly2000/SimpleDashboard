@@ -2,10 +2,10 @@
 using Domain.Services.UserStory.Repositories;
 using Domain.Services.UserStory.Synchronizers;
 using Domain.UserStory;
-using Infra.Database.SQLServer;
 using Infra.Database.SQLServer.UserStory.Entities;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Microsoft.EntityFrameworkCore;
+using Task = System.Threading.Tasks.Task;
 
 namespace Infra.Database.SQLServer.UserStory.Repositories
 {
@@ -26,35 +26,42 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             _context = context;
         }
 
-        public void Add(IUserStoryInformationAspect aspect)
+        public async Task Add(IUserStoryInformationAspect aspect)
         {
             var entity = (UserStoryInformation)_synchronizer.Synchronize(aspect);
-            _context.UserStoryInformations.Add(entity);
-            _context.SaveChanges();
+            await _context.UserStoryInformations.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(IUserStoryInformationAspect aspect)
+        public async Task Update(IUserStoryInformationAspect aspect)
         {
             var entity = (UserStoryInformation)_synchronizer.Synchronize(aspect);
             _context.UserStoryInformations.Update(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public IUserStoryInformationAspect LoadById(Guid Id)
+        public async Task<IUserStoryInformationAspect> LoadById(Guid Id)
         {
-            var entity = _context.Set<UserStoryInformation>()
-                .Single(ent => ent.Id.Equals(Id));
+            var entity = await _context.Set<UserStoryInformation>()
+                .SingleOrDefaultAsync(ent => ent.Id.Equals(Id))
+                .ConfigureAwait(false);
+
+            if(entity is null)
+            {
+                throw new Exception($"Not find UserStoryInformation by Id: {Id}");
+            }
 
             return _mapper.Map(entity);
         }
 
-        public IList<IUserStoryInformationAspect> LoadByOwnerId(Guid id)
+        public async Task<IList<IUserStoryInformationAspect>> LoadByOwnerId(Guid id)
         {
-            return _context
-                .Set<UserStoryInformation>()
-                .Where(entity => entity.OwnerId.Equals(id))
-                .Select(_mapper.Map)
-                .ToList();
+            var userStotryInformations = await _context.Set<UserStoryInformation>()
+                .Where(entity => !string.IsNullOrEmpty(entity.OwnerId) && entity.OwnerId.Equals(id))
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            return userStotryInformations.Select(_mapper.Map).ToList();
         }
     }
 }

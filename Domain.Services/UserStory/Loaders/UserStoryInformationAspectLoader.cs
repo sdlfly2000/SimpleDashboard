@@ -15,14 +15,14 @@ namespace Domain.Services.UserStory.Loaders
             _userStoryRepository = repository; 
         }
 
-        public IUserStoryInformationAspect Load(UserStoryReference Id)
+        public async Task<IUserStoryInformationAspect> Load(UserStoryReference Id)
         {
-            return _userStoryRepository.LoadById(Guid.Parse(Id.Code));
+            return await _userStoryRepository.LoadById(Guid.Parse(Id.Code)).ConfigureAwait(false);
         }
 
-        public IList<IUserStoryInformationAspect> LoadByOwner(UserReference owner)
+        public async Task<IList<IUserStoryInformationAspect>> LoadByOwner(UserReference owner)
         {
-            return _userStoryRepository.LoadByOwnerId(Guid.Parse(owner.Code));
+            return await _userStoryRepository.LoadByOwnerId(Guid.Parse(owner.Code)).ConfigureAwait(false);
         }
     }
 }

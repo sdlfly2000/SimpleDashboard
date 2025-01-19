@@ -5,8 +5,8 @@ namespace Domain.Services.UserStory.Loaders
 {
     public interface IUserStoryInformationAspectLoader
     {
-        IUserStoryInformationAspect Load(UserStoryReference Id);
+        Task<IUserStoryInformationAspect> Load(UserStoryReference Id);
 
-        IList<IUserStoryInformationAspect> LoadByOwner(UserReference owner);
+        Task<IList<IUserStoryInformationAspect>> LoadByOwner(UserReference owner);
     }
 }

@@ -5,6 +5,6 @@ namespace Domain.Services.UserStory.Repositories
 {
     public interface IUserStoryRepository : IRepository<IUserStoryInformationAspect, IEntity>
     {
-        IList<IUserStoryInformationAspect> LoadByOwnerId(Guid id);
+        Task<IList<IUserStoryInformationAspect>> LoadByOwnerId(Guid id);
     }
 }

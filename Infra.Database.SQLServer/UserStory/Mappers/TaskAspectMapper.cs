@@ -17,7 +17,7 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
 
             return new TaskAspect
             {
-                Reference = new TaskReference(entity.Id.ToString()),
+                Reference = new TaskReference(entity.Id),
                 Title = entity.Title ?? string.Empty,
                 Description = entity.Description ?? string.Empty,
                 Owner = new UserReference(entity.OwnerId?.ToString()),

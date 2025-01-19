@@ -4,7 +4,7 @@ namespace Domain.UserStory
 {
     public class UserStoryReference : Reference
     {
-        public UserStoryReference(string code) : base(code, CacheField.UserStory)
+        public UserStoryReference(long code) : base(code.ToString(), CacheField.UserStory)
         {
         }
     }

@@ -19,28 +19,31 @@ namespace Domain.Services.UserStory
             _taskAspectLoader = taskAspectLoader;
         }
 
-        public IUserStory GetUserStoryById(UserStoryReference Id)
+        public async Task<IUserStory> GetUserStoryById(UserStoryReference Id)
         {
-            var userStoryInformationAspect = _userStoryInformationAspectLoader.Load(Id);
+            var userStoryInformationAspect = await _userStoryInformationAspectLoader.Load(Id).ConfigureAwait(false);
             var userStory = new UserStoryDomain(userStoryInformationAspect);
-            var taskAspects = _taskAspectLoader.LoadByUserStroyId(Id);
+            var taskAspects = await _taskAspectLoader.LoadByUserStroyId(Id).ConfigureAwait(false);
 
             userStory.Tasks.AddRange(taskAspects);
 
             return userStory;
         }
 
-        public IList<IUserStory> GetUserStroyByOwner(UserReference owner)
+        public async Task<IList<IUserStory>> GetUserStroyByOwner(UserReference owner)
         {
-            return _userStoryInformationAspectLoader.LoadByOwner(owner)
-                .Select(
-                aspect => 
-                {
-                    var userStory = new UserStoryDomain(aspect);
-                    var tasks = _taskAspectLoader.LoadByUserStroyId((aspect.Reference as UserStoryReference)!);
-                    userStory.Tasks.AddRange(tasks);
-                    return userStory;
-                }).ToList<IUserStory>();
+            var userStories = new List<UserStoryDomain>();
+            var userStoryInformationAspects = await _userStoryInformationAspectLoader.LoadByOwner(owner).ConfigureAwait(false);
+
+            foreach(var aspect in userStoryInformationAspects)
+            {
+                var userStory = new UserStoryDomain(aspect);
+                var tasks = await _taskAspectLoader.LoadByUserStroyId((aspect.Reference as UserStoryReference)!).ConfigureAwait(false);
+                userStory.Tasks.AddRange(tasks);
+                userStories.Add(userStory);
+            }
+
+            return (IList<IUserStory>)userStories;
         }
     }
 }

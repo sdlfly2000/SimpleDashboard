@@ -14,14 +14,14 @@ namespace Domain.Services.UserStory.Loaders
             _taskRepository = taskRepository;
         }
 
-        public ITaskAspect LoadById(TaskReference id)
+        public async Task<ITaskAspect> LoadById(TaskReference id)
         {
-            return _taskRepository.LoadById(id);
+            return await _taskRepository.LoadById(id).ConfigureAwait(false);
         }
 
-        public List<ITaskAspect> LoadByUserStroyId(UserStoryReference id)
+        public async Task<List<ITaskAspect>> LoadByUserStroyId(UserStoryReference id)
         {
-            return _taskRepository.LoadByUserStoryId(id);
+            return await _taskRepository.LoadByUserStoryId(id).ConfigureAwait(false);
         }
     }
 }

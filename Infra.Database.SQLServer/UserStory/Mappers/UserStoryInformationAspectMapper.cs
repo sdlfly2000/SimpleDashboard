@@ -10,17 +10,17 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
     {
         public IUserStoryInformationAspect Map(UserStoryInformation entity)
         {
-            return new UserStoryInformationAspect(new UserStoryReference(entity.Id.ToString()))
+            return new UserStoryInformationAspect(new UserStoryReference(entity.Id))
             {
-                Title = entity.Title,
-                Description = entity.Description,
-                Owner = new UserReference(entity.OwnerId.ToString()),
+                Title = entity.Title ?? string.Empty,
+                Description = entity.Description ?? string.Empty,
+                Owner = new UserReference(entity.OwnerId ?? string.Empty.ToString()),
                 StartedOn = entity.StartedOn ?? default,
-                Status = new UserStroyStatus(entity.Status),
+                Status = entity.Status != null ? (UserStroyStatus)entity.Status : default,
                 ModifiedOn = entity.ModifiedOn ?? default,
-                ModifiedBy = new UserReference(entity.ModifiedById.ToString()),
+                ModifiedBy = new UserReference(entity.ModifiedById ?? string.Empty.ToString()),
                 CreatedOn = entity.CreatedOn ?? default,
-                CreatedBy = new UserReference(entity.CreatedById.ToString())
+                CreatedBy = new UserReference(entity.CreatedById ?? string.Empty.ToString())
             };
         }
     }

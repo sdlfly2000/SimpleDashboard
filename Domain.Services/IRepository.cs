@@ -1,13 +1,11 @@
-﻿using Common.Core.AOP.Cache;
-
-namespace Domain.Services
+﻿namespace Domain.Services
 {
     public interface IRepository<TAspect, TEntity>
     {
-        TAspect LoadById(Guid Id);
+        Task<TAspect> LoadById(Guid Id);
 
-        void Update(TAspect aspect);
+        Task Update(TAspect aspect);
 
-        void Add(TAspect aspect);
+        Task Add(TAspect aspect);
     }
 }

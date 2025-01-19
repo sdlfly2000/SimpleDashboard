@@ -1,4 +1,6 @@
-﻿namespace Domain.UserStory
+﻿using System.Numerics;
+
+namespace Domain.UserStory
 {
     public struct UserStroyStatus
     {
@@ -23,6 +25,11 @@
         public UserStroyStatus(string status)
         {
             Status = status;
+        }
+
+        public static explicit operator UserStroyStatus(string status)
+        {
+            return new UserStroyStatus(status);
         }
 
         public static UserStroyStatus Parse(string status)
