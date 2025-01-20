@@ -6,7 +6,7 @@ using FluentAssertions;
 using Infra.Database.SQLServer.UserStory.Entities;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Infra.Database.SQLServer.UserStory.Repositories;
-using MockQueryable.FakeItEasy;
+using Microsoft.Extensions.DependencyInjection;
 using SimpleDashboard.Common;
 using Task = System.Threading.Tasks.Task;
 
@@ -15,6 +15,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
     public class TaskRepositoryTest
     {
         private TaskRepository _testee;
+        private ServiceProvider? _serviceProvider;
 
         [SetUp]
         public void Setup()
@@ -33,10 +34,12 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             };
 
             var taskAspectMapper = A.Fake<ITaskAspectMapper>(o => o.Strict());
-            var userStoryDbContext = A.Fake<UserStoryDbContext>();
+            var (userStoryDbContext, _serviceProvider) = FakeDbContext.Create<UserStoryDbContext>();
 
-            A.CallTo(() => userStoryDbContext.Set<SQLServer.UserStory.Entities.Task>()).Returns(tasks.AsQueryable().BuildMockDbSet());
-            A.CallTo(() => taskAspectMapper.Map(A<SQLServer.UserStory.Entities.Task>._)).ReturnsLazily((SQLServer.UserStory.Entities.Task task) =>
+            userStoryDbContext.Tasks.AddRange(tasks);
+            userStoryDbContext.SaveChanges();
+
+            A.CallTo(() => taskAspectMapper.Map(A<SQLServer.UserStory.Entities.Task>.Ignored)).ReturnsLazily((SQLServer.UserStory.Entities.Task task) =>
             {
                 return new TaskAspect
                 {
