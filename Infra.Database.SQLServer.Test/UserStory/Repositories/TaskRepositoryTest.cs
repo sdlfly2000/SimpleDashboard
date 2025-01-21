@@ -1,4 +1,3 @@
-using Common.Core.Data.Sql;
 using Domain.User;
 using Domain.UserStory;
 using FakeItEasy;
@@ -6,7 +5,6 @@ using FluentAssertions;
 using Infra.Database.SQLServer.UserStory.Entities;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Infra.Database.SQLServer.UserStory.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 using SimpleDashboard.Common;
 using Task = System.Threading.Tasks.Task;
 
@@ -15,7 +13,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
     public class TaskRepositoryTest
     {
         private TaskRepository _testee;
-        private ServiceProvider? _serviceProvider;
+        private UserStoryDbContext _userStoryDbContext;
 
         [SetUp]
         public void Setup()
@@ -34,10 +32,10 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             };
 
             var taskAspectMapper = A.Fake<ITaskAspectMapper>(o => o.Strict());
-            var (userStoryDbContext, _serviceProvider) = FakeDbContext.Create<UserStoryDbContext>();
+            _userStoryDbContext = FakeDbContext.Create<UserStoryDbContext>();
 
-            userStoryDbContext.Tasks.AddRange(tasks);
-            userStoryDbContext.SaveChanges();
+            _userStoryDbContext.Tasks.AddRange(tasks);
+            _userStoryDbContext.SaveChanges();
 
             A.CallTo(() => taskAspectMapper.Map(A<SQLServer.UserStory.Entities.Task>.Ignored)).ReturnsLazily((SQLServer.UserStory.Entities.Task task) =>
             {
@@ -57,7 +55,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
                 };
             });
 
-            _testee = new TaskRepository(userStoryDbContext, taskAspectMapper);
+            _testee = new TaskRepository(_userStoryDbContext, taskAspectMapper);
         }
 
         [Test, Category(nameof(TestCategoryEnum.UnitTest))]
@@ -74,6 +72,15 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             taskAspect.Reference.Code.Should().Be("1");
             taskAspect.Title.Should().Be("Test1");
             
+        }
+
+        [TearDown]
+        public async Task Cleanup()
+        {
+            if(_userStoryDbContext != null)
+            {
+                await _userStoryDbContext.DisposeAsync().ConfigureAwait(false);
+            }
         }
     }
 }
