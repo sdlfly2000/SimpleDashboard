@@ -1,6 +1,7 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Repositories;
 using Domain.UserStory;
+using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Entities;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Infra.Database.SQLServer.UserStory.Synchronizers;

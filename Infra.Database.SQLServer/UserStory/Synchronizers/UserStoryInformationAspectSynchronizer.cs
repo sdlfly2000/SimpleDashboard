@@ -1,5 +1,6 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.UserStory;
+using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Entities;
 
 namespace Infra.Database.SQLServer.UserStory.Synchronizers;

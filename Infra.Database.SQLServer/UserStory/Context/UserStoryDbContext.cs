@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Infra.Database.SQLServer.UserStory.Entities;
 using Microsoft.EntityFrameworkCore;
+using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
 
-namespace Infra.Database.SQLServer.UserStory.Entities;
+namespace Infra.Database.SQLServer.UserStory.Context;
 
 public partial class UserStoryDbContext : DbContext
 {
@@ -18,6 +18,8 @@ public partial class UserStoryDbContext : DbContext
     public virtual DbSet<Task> Tasks { get; set; }
 
     public virtual DbSet<UserStoryInformation> UserStoryInformations { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
