@@ -4,6 +4,7 @@ using Domain.UserStory;
 using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Microsoft.EntityFrameworkCore;
+using SimpleDashboard.Common.Exceptions;
 using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
 
 namespace Infra.Database.SQLServer.UserStory.Repositories
@@ -23,9 +24,10 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
         public async Task<ITaskAspect> LoadById(TaskReference id)
         {
             var task = await _context.Set<Task>().FindAsync(long.Parse(id.Code)).ConfigureAwait(false);
+
             if (task == null) 
             {
-                throw new Exception($"Not find Task with Id: {id.Code}");
+                throw new NotFoundFromDatabaseException<Task>(id.Code);
             }
 
             return _mapper.Map(task);          

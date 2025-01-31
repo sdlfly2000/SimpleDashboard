@@ -6,6 +6,7 @@ using Infra.Database.SQLServer.UserStory.Entities;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Infra.Database.SQLServer.UserStory.Synchronizers;
 using Microsoft.EntityFrameworkCore;
+using SimpleDashboard.Common.Exceptions;
 using Task = System.Threading.Tasks.Task;
 
 namespace Infra.Database.SQLServer.UserStory.Repositories
@@ -49,7 +50,7 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
 
             if(entity is null)
             {
-                throw new Exception($"Not find UserStoryInformation by Id: {Id}");
+                throw new NotFoundFromDatabaseException<UserStoryInformation>(Id.ToString());
             }
 
             return _mapper.Map(entity);

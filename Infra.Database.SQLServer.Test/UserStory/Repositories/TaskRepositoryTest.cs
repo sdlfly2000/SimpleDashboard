@@ -2,7 +2,7 @@ using Domain.User;
 using Domain.UserStory;
 using FakeItEasy;
 using FluentAssertions;
-using Infra.Database.SQLServer.UserStory.Entities;
+using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Infra.Database.SQLServer.UserStory.Repositories;
 using SimpleDashboard.Common;
@@ -73,7 +73,6 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             taskAspect.Title.Should().Be("Test1");
             
         }
-
 
         [Test, Category(nameof(TestCategoryEnum.SystemTest))]
         public async Task Given_TaskReference_When_LoadById_Then_TaskAspect_returnFromWorkingDatabase()
