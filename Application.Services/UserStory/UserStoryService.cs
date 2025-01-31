@@ -9,11 +9,11 @@ namespace Application.Services.UserStory
     [ServiceLocate(typeof(IUserStoryService))]
     public class UserStoryService : IUserStoryService
     {
-        private readonly IUserStoryPersistor _persistor;
+        private readonly IUserStoryGateway _userStoryGateway;
 
-        public UserStoryService(IUserStoryPersistor persistor)
+        public UserStoryService(IUserStoryGateway persistor)
         {
-            _persistor = persistor;
+            _userStoryGateway = persistor;
         }
 
         public CreateUserStoryResponse Create(CreateUserStoryRequest request)
@@ -32,8 +32,7 @@ namespace Application.Services.UserStory
                 CreatedBy = UserReference.Parse(request.CreatedBy)
             });
 
-            var reference = _persistor.Add(new UserStoryDomain(userStory));
-            return new CreateUserStoryResponse { Id = reference.Code.ToString() };
+            return new CreateUserStoryResponse { };
         }
 
         public RetrieveUserStoriesByOnwerResponse Retrieve(RetrieveUserStoriesByOnwerRequest request)

@@ -5,13 +5,13 @@ using Domain.UserStory;
 
 namespace Domain.Services.UserStory
 {
-    [ServiceLocate(typeof(IUserStroyGateway))]
-    public class UserStroyGateway : IUserStroyGateway
+    [ServiceLocate(typeof(IUserStoryGateway))]
+    public class UserStoryGateway : IUserStoryGateway
     {
         private readonly IUserStoryInformationAspectLoader _userStoryInformationAspectLoader;
         private readonly ITaskAspectLoader _taskAspectLoader;
 
-        public UserStroyGateway(
+        public UserStoryGateway(
             IUserStoryInformationAspectLoader userStoryInformationAspectLoader,
             ITaskAspectLoader taskAspectLoader)
         {
@@ -30,7 +30,7 @@ namespace Domain.Services.UserStory
             return userStory;
         }
 
-        public async Task<IList<IUserStory>> GetUserStroyByOwner(UserReference owner)
+        public async Task<IList<IUserStory>> GetUserStoryByOwner(UserReference owner)
         {
             var userStories = new List<UserStoryDomain>();
             var userStoryInformationAspects = await _userStoryInformationAspectLoader.LoadByOwner(owner).ConfigureAwait(false);

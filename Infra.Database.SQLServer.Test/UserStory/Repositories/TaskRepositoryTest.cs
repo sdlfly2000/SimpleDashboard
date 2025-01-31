@@ -32,7 +32,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             };
 
             var taskAspectMapper = A.Fake<ITaskAspectMapper>(o => o.Strict());
-            _userStoryDbContext = FakeDbContext.Create<UserStoryDbContext>();
+            _userStoryDbContext = DbContextFactory.CreateFake<UserStoryDbContext>();
 
             _userStoryDbContext.Tasks.AddRange(tasks);
             _userStoryDbContext.SaveChanges();
@@ -72,6 +72,25 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             taskAspect.Reference.Code.Should().Be("1");
             taskAspect.Title.Should().Be("Test1");
             
+        }
+
+
+        [Test, Category(nameof(TestCategoryEnum.SystemTest))]
+        public async Task Given_TaskReference_When_LoadById_Then_TaskAspect_returnFromWorkingDatabase()
+        {
+            // Arrange
+            var taskReference = new TaskReference(1);
+            var repository = new TaskRepository(
+                                    DbContextFactory.Create<UserStoryDbContext>(),
+                                    new TaskAspectMapper());
+
+            // Action
+            var taskAspect = await repository.LoadById(taskReference).ConfigureAwait(false);
+
+            // Asserts
+            taskAspect.Should().NotBeNull();
+            taskAspect.Reference.Code.Should().Be("1");
+            taskAspect.Title.Should().Be("Test1");
         }
 
         [TearDown]

@@ -3,8 +3,7 @@ using Infra.Database.SQLServer.UserStory.Entities;
 
 namespace Infra.Database.SQLServer.UserStory.Mappers
 {
-    public interface IUserStoryInformationAspectMapper
+    public interface IUserStoryInformationAspectMapper : IMapper<UserStoryInformation, IUserStoryInformationAspect>
     {
-        IUserStoryInformationAspect Map(UserStoryInformation entity);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Services
 {
-    public interface IRepository<TAspect, TEntity>
+    public interface IRepository<TAspect>
     {
         Task<TAspect> LoadById(Guid Id);
 

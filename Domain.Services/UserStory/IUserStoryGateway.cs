@@ -3,10 +3,10 @@ using Domain.UserStory;
 
 namespace Domain.Services.UserStory
 {
-    internal interface IUserStroyGateway
+    public interface IUserStoryGateway
     {
         Task<IUserStory> GetUserStoryById(UserStoryReference Id);
 
-        Task<IList<IUserStory>> GetUserStroyByOwner(UserReference owner);
+        Task<IList<IUserStory>> GetUserStoryByOwner(UserReference owner);
     }
 }

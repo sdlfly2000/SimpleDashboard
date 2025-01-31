@@ -1,9 +1,8 @@
-﻿using Common.Core.Data.Sql;
-using Domain.UserStory;
+﻿using Domain.UserStory;
 
 namespace Domain.Services.UserStory.Repositories
 {
-    public interface IUserStoryRepository : IRepository<IUserStoryInformationAspect, IEntity>
+    public interface IUserStoryRepository : IRepository<IUserStoryInformationAspect>
     {
         Task<IList<IUserStoryInformationAspect>> LoadByOwnerId(Guid id);
     }

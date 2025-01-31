@@ -3,6 +3,7 @@ using Common.Core.Authentication;
 using Common.Core.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using SimpleDashboard.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
+
+builder.Services.AddSerilog(
+    (configure) =>
+        configure.ReadFrom.Configuration(builder.Configuration));
 
 builder.Services.Configure<JWTOptions>(builder.Configuration.GetSection("JWT"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

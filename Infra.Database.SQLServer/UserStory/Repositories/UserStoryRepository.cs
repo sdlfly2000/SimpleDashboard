@@ -1,9 +1,9 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Repositories;
-using Domain.Services.UserStory.Synchronizers;
 using Domain.UserStory;
 using Infra.Database.SQLServer.UserStory.Entities;
 using Infra.Database.SQLServer.UserStory.Mappers;
+using Infra.Database.SQLServer.UserStory.Synchronizers;
 using Microsoft.EntityFrameworkCore;
 using Task = System.Threading.Tasks.Task;
 
@@ -28,14 +28,14 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
 
         public async Task Add(IUserStoryInformationAspect aspect)
         {
-            var entity = (UserStoryInformation)_synchronizer.Synchronize(aspect);
+            var entity = await _synchronizer.Synchronize(aspect);
             await _context.UserStoryInformations.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
         public async Task Update(IUserStoryInformationAspect aspect)
         {
-            var entity = (UserStoryInformation)_synchronizer.Synchronize(aspect);
+            var entity = await _synchronizer.Synchronize(aspect);
             _context.UserStoryInformations.Update(entity);
             await _context.SaveChangesAsync();
         }
