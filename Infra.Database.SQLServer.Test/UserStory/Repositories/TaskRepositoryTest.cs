@@ -65,7 +65,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             var taskReference = new TaskReference(1);
 
             // Action
-            var taskAspect = await _testee.LoadById(taskReference).ConfigureAwait(false);
+            var taskAspect = await _testee.LoadById(long.Parse(taskReference.Code)).ConfigureAwait(false);
 
             // Asserts
             taskAspect.Should().NotBeNull();
@@ -84,7 +84,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
                                     new TaskAspectMapper());
 
             // Action
-            var taskAspect = await repository.LoadById(taskReference).ConfigureAwait(false);
+            var taskAspect = await repository.LoadById(long.Parse(taskReference.Code)).ConfigureAwait(false);
 
             // Asserts
             taskAspect.Should().NotBeNull();
