@@ -2,6 +2,7 @@
 using Domain.UserStory;
 using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Entities;
+using SimpleDashboard.Common.Exceptions;
 
 namespace Infra.Database.SQLServer.UserStory.Synchronizers;
 
@@ -43,7 +44,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
 
         if (userStoryInformation == null)
         {
-            throw new Exception($"userStoryInformation is not found with id:{aspect.Reference.Code}.");
+            throw new NotFoundFromDatabaseException<UserStoryInformation>(aspect.Reference.Code);
         }
 
         userStoryInformation.Title = aspect.Title;

@@ -2,10 +2,8 @@
 
 namespace Domain.Services.UserStory.Repositories
 {
-    public interface ITaskRepository
+    public interface ITaskRepository : IRepository<long, ITaskAspect>
     {
-        Task<ITaskAspect> LoadById(TaskReference id);
-
         Task<List<ITaskAspect>> LoadByUserStoryId(UserStoryReference userStoryId);
     }
 }

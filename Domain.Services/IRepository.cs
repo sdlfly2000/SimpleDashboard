@@ -1,8 +1,8 @@
 ﻿namespace Domain.Services
 {
-    public interface IRepository<TAspect>
+    public interface IRepository<TKey,TAspect>
     {
-        Task<TAspect> LoadById(Guid Id);
+        Task<TAspect> LoadById(TKey Id);
 
         Task Update(TAspect aspect);
 

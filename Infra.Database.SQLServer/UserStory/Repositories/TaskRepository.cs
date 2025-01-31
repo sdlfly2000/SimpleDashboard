@@ -21,13 +21,13 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             _mapper = mapper;
         }
 
-        public async Task<ITaskAspect> LoadById(TaskReference id)
+        public async Task<ITaskAspect> LoadById(long id)
         {
-            var task = await _context.Set<Task>().FindAsync(long.Parse(id.Code)).ConfigureAwait(false);
+            var task = await _context.Set<Task>().FindAsync(id).ConfigureAwait(false);
 
             if (task == null) 
             {
-                throw new NotFoundFromDatabaseException<Task>(id.Code);
+                throw new NotFoundFromDatabaseException<Task>(id.ToString());
             }
 
             return _mapper.Map(task);          
@@ -41,6 +41,16 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
                .Select(entity => _mapper.Map(entity))
                .ToListAsync()
                .ConfigureAwait(false);
+        }
+
+        public System.Threading.Tasks.Task Update(ITaskAspect aspect)
+        {
+            throw new NotImplementedException();
+        }
+
+        public System.Threading.Tasks.Task Add(ITaskAspect aspect)
+        {
+            throw new NotImplementedException();
         }
     }
 }
