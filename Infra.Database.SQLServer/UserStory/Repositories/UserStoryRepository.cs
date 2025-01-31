@@ -42,7 +42,7 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IUserStoryInformationAspect> LoadById(Guid Id)
+        public async Task<IUserStoryInformationAspect> LoadById(long Id)
         {
             var entity = await _context.Set<UserStoryInformation>()
                 .SingleOrDefaultAsync(ent => ent.Id.Equals(Id))

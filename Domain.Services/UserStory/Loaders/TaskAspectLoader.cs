@@ -16,7 +16,7 @@ namespace Domain.Services.UserStory.Loaders
 
         public async Task<ITaskAspect> LoadById(TaskReference id)
         {
-            return await _taskRepository.LoadById(id).ConfigureAwait(false);
+            return await _taskRepository.LoadById(long.Parse(id.Code)).ConfigureAwait(false);
         }
 
         public async Task<List<ITaskAspect>> LoadByUserStroyId(UserStoryReference id)

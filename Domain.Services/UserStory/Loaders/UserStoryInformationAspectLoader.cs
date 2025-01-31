@@ -17,7 +17,7 @@ namespace Domain.Services.UserStory.Loaders
 
         public async Task<IUserStoryInformationAspect> Load(UserStoryReference Id)
         {
-            return await _userStoryRepository.LoadById(Guid.Parse(Id.Code)).ConfigureAwait(false);
+            return await _userStoryRepository.LoadById(long.Parse(Id.Code)).ConfigureAwait(false);
         }
 
         public async Task<IList<IUserStoryInformationAspect>> LoadByOwner(UserReference owner)
