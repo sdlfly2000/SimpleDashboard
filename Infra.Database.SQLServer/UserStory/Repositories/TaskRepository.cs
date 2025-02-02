@@ -51,13 +51,17 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
 
         public async System.Threading.Tasks.Task Update(ITaskAspect aspect)
         {
-            await _synchronizer.Synchronize(aspect).ConfigureAwait(false);
+            var task = await _synchronizer.Synchronize(aspect).ConfigureAwait(false);
+            var taskUpdated = _context.Tasks.Update(task);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<long> Add(ITaskAspect aspect)
         {
             var task = await _synchronizer.Synchronize(aspect).ConfigureAwait(false);
-            return task.Id;
+            var taskAdded = await _context.Tasks.AddAsync(task).ConfigureAwait(false);
+            await _context.SaveChangesAsync();
+            return taskAdded.Entity.Id;
         }
     }
 }

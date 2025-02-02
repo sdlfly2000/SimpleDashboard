@@ -84,15 +84,27 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             {
                 Title = "Test1",
                 Description = "Description1",
+                Owner = new UserReference("1"),
+                StartedOn = DateTime.Now,
+                Period = TimeSpan.FromDays(1),
+                Status = Domain.UserStory.TaskStatus.Initial,
+                ModifiedOn = DateTime.Now,
+                ModifiedBy = new UserReference("1"),
+                CreatedOn = DateTime.Now,
+                CreatedBy = new UserReference("1")
             };
 
             using var userStoryDbContext = DbContextFactory.Create<UserStoryDbContext>();
             var repository = new TaskRepository(userStoryDbContext, new TaskAspectMapper(), new TaskAspectSynchronizer(userStoryDbContext));
 
             // Action
-            await repository.Add(taskAspect).ConfigureAwait(false);
+            var taskId = await repository.Add(taskAspect).ConfigureAwait(false);
 
             // Asserts
+            var task = await userStoryDbContext.Tasks.FindAsync(taskId).ConfigureAwait(false);
+            task.Should().NotBeNull();
+            task.Title.Should().Be("Test1");
+            task.Description.Should().Be("Description1");
         }
 
         [Test, Category(nameof(TestCategoryEnum.SystemTest))]
