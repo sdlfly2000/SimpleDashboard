@@ -5,6 +5,7 @@ using FluentAssertions;
 using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Mappers;
 using Infra.Database.SQLServer.UserStory.Repositories;
+using Infra.Database.SQLServer.UserStory.Synchronizers;
 using SimpleDashboard.Common;
 using Task = System.Threading.Tasks.Task;
 
@@ -32,6 +33,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             };
 
             var taskAspectMapper = A.Fake<ITaskAspectMapper>(o => o.Strict());
+            var taskAspectSynchronizer = A.Fake<ITaskAspectSynchronizer>(o => o.Strict());
             _userStoryDbContext = DbContextFactory.CreateFake<UserStoryDbContext>();
 
             _userStoryDbContext.Tasks.AddRange(tasks);
@@ -55,7 +57,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
                 };
             });
 
-            _testee = new TaskRepository(_userStoryDbContext, taskAspectMapper);
+            _testee = new TaskRepository(_userStoryDbContext, taskAspectMapper, taskAspectSynchronizer);
         }
 
         [Test, Category(nameof(TestCategoryEnum.UnitTest))]
@@ -75,13 +77,31 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
         }
 
         [Test, Category(nameof(TestCategoryEnum.SystemTest))]
+        public async Task Given_Task_When_Add_Then_TaskAspect_SavedToWorkingDatabase()
+        {
+            // Arrange
+            var taskAspect = new TaskAspect
+            {
+                Title = "Test1",
+                Description = "Description1",
+            };
+
+            using var userStoryDbContext = DbContextFactory.Create<UserStoryDbContext>();
+            var repository = new TaskRepository(userStoryDbContext, new TaskAspectMapper(), new TaskAspectSynchronizer(userStoryDbContext));
+
+            // Action
+            await repository.Add(taskAspect).ConfigureAwait(false);
+
+            // Asserts
+        }
+
+        [Test, Category(nameof(TestCategoryEnum.SystemTest))]
         public async Task Given_TaskReference_When_LoadById_Then_TaskAspect_returnFromWorkingDatabase()
         {
             // Arrange
             var taskReference = new TaskReference(1);
-            var repository = new TaskRepository(
-                                    DbContextFactory.Create<UserStoryDbContext>(),
-                                    new TaskAspectMapper());
+            using var userStoryDbContext = DbContextFactory.Create<UserStoryDbContext>();
+            var repository = new TaskRepository(userStoryDbContext, new TaskAspectMapper(), new TaskAspectSynchronizer(userStoryDbContext));
 
             // Action
             var taskAspect = await repository.LoadById(long.Parse(taskReference.Code)).ConfigureAwait(false);

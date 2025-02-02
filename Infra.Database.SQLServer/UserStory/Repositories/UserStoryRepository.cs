@@ -1,4 +1,5 @@
 ﻿using Common.Core.DependencyInjection;
+using Domain.Services;
 using Domain.Services.UserStory.Repositories;
 using Domain.UserStory;
 using Infra.Database.SQLServer.UserStory.Context;
@@ -64,6 +65,11 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
                 .ConfigureAwait(false);
 
             return userStotryInformations.Select(_mapper.Map).ToList();
+        }
+
+        Task<long> IRepository<long, IUserStoryInformationAspect>.Add(IUserStoryInformationAspect aspect)
+        {
+            throw new NotImplementedException();
         }
     }
 }

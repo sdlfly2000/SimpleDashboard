@@ -6,6 +6,6 @@
 
         Task Update(TAspect aspect);
 
-        Task Add(TAspect aspect);
+        Task<TKey> Add(TAspect aspect);
     }
 }

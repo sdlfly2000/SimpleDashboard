@@ -3,6 +3,7 @@ using Domain.Services.UserStory.Repositories;
 using Domain.UserStory;
 using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Mappers;
+using Infra.Database.SQLServer.UserStory.Synchronizers;
 using Microsoft.EntityFrameworkCore;
 using SimpleDashboard.Common.Exceptions;
 using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
@@ -14,11 +15,16 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
     {
         private readonly UserStoryDbContext _context;
         private readonly ITaskAspectMapper _mapper;
+        private readonly ITaskAspectSynchronizer _synchronizer;
 
-        public TaskRepository(UserStoryDbContext context, ITaskAspectMapper mapper)
+        public TaskRepository(
+            UserStoryDbContext context, 
+            ITaskAspectMapper mapper,
+            ITaskAspectSynchronizer synchronizer)
         {
             _context = context;
             _mapper = mapper;
+            _synchronizer = synchronizer;
         }
 
         public async Task<ITaskAspect> LoadById(long id)
@@ -43,14 +49,15 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
                .ConfigureAwait(false);
         }
 
-        public System.Threading.Tasks.Task Update(ITaskAspect aspect)
+        public async System.Threading.Tasks.Task Update(ITaskAspect aspect)
         {
-            throw new NotImplementedException();
+            await _synchronizer.Synchronize(aspect).ConfigureAwait(false);
         }
 
-        public System.Threading.Tasks.Task Add(ITaskAspect aspect)
+        public async Task<long> Add(ITaskAspect aspect)
         {
-            throw new NotImplementedException();
+            var task = await _synchronizer.Synchronize(aspect).ConfigureAwait(false);
+            return task.Id;
         }
     }
 }

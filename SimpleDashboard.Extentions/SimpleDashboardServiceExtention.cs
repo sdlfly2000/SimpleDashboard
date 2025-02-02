@@ -1,6 +1,5 @@
-﻿using Infra.Database.SQLServer;
-using Infra.Database.SQLServer.User.Entities;
-using Infra.Database.SQLServer.UserStory.Entities;
+﻿using Infra.Database.SQLServer.User.Entities;
+using Infra.Database.SQLServer.UserStory.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
