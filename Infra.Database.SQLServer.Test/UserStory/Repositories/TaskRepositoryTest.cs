@@ -84,14 +84,14 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             {
                 Title = "Test1",
                 Description = "Description1",
-                Owner = new UserReference("1"),
+                Owner = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4"),
                 StartedOn = DateTime.Now,
                 Period = TimeSpan.FromDays(1),
                 Status = Domain.UserStory.TaskStatus.Initial,
                 ModifiedOn = DateTime.Now,
-                ModifiedBy = new UserReference("1"),
+                ModifiedBy = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4"),
                 CreatedOn = DateTime.Now,
-                CreatedBy = new UserReference("1")
+                CreatedBy = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4")
             };
 
             using var userStoryDbContext = DbContextFactory.Create<UserStoryDbContext>();
