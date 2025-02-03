@@ -2,14 +2,13 @@
 using Domain.User;
 using Domain.UserRequirement;
 using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
-using TaskStatus = Domain.UserRequirement.TaskStatus;
 
 namespace Infra.Database.SQLServer.UserStory.Mappers
 {
     [ServiceLocate(typeof(ITaskAspectMapper))]
     public class TaskAspectMapper : ITaskAspectMapper
     {
-        public ITaskAspect Map(Task entity)
+        public TaskAspect Map(Task entity)
         {
             return new TaskAspect
             {
@@ -19,7 +18,7 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
                 Owner = new UserReference(entity.OwnerId?.ToString()),
                 StartedOn = entity.StartedOn ?? default,
                 Period = entity.Period.HasValue ? TimeSpan.FromTicks(entity.Period.Value) : default,
-                Status = TaskStatus.Parse(entity.Status),
+                Status = Enum.Parse<EnumRecordStatus>(entity.Status),
                 ModifiedOn = entity.ModifiedOn ?? default,
                 ModifiedBy = new UserReference(entity.ModifiedById?.ToString()),
                 CreatedOn = entity.CreatedOn ?? default,

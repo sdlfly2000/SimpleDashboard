@@ -16,7 +16,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
         _context = context;
     }
 
-    public async Task<UserStoryInformation> Synchronize(IUserStoryInformationAspect aspect)
+    public async Task<UserStoryInformation> Synchronize(UserStoryInformationAspect aspect)
     {
         if (aspect.Reference is null)
         {
@@ -38,7 +38,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
         return await Update(aspect);        
     }
 
-    private async Task<UserStoryInformation> Update(IUserStoryInformationAspect aspect)
+    private async Task<UserStoryInformation> Update(UserStoryInformationAspect aspect)
     {
         var userStoryInformation = await _context.UserStoryInformations.FindAsync(long.Parse(aspect.Reference.Code)).ConfigureAwait(false);
 

@@ -10,10 +10,10 @@ namespace Domain.UserRequirement
         public UserStoryDomain(IUserStoryInformationAspect userStoryInformationAspect)
         {
             _userStoryInformationAspect = userStoryInformationAspect;
-            Tasks = new List<ITaskAspect>();
+            Tasks = new List<TaskAspect>();
         }
 
-        public List<ITaskAspect> Tasks { get; }
+        public List<TaskAspect> Tasks { get; }
 
         public string Title { get => _userStoryInformationAspect.Title; set => _userStoryInformationAspect.Title = value; }
         public string Description { get => _userStoryInformationAspect.Description; set => _userStoryInformationAspect.Description = value; }

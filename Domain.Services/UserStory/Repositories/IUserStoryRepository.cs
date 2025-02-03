@@ -2,8 +2,8 @@
 
 namespace Domain.Services.UserStory.Repositories
 {
-    public interface IUserStoryRepository : IRepository<long, IUserStoryInformationAspect>
+    public interface IUserStoryRepository : IRepository<long, UserStoryInformationAspect>
     {
-        Task<IList<IUserStoryInformationAspect>> LoadByOwnerId(Guid id);
+        Task<IList<UserStoryInformationAspect>> LoadByOwnerId(Guid id);
     }
 }

@@ -3,7 +3,7 @@ using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
 
 namespace Infra.Database.SQLServer.UserStory.Mappers
 {
-    public interface ITaskAspectMapper : IMapper<Task, ITaskAspect>
+    public interface ITaskAspectMapper : IMapper<Task, TaskAspect>
     {
     }
 }

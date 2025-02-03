@@ -15,12 +15,12 @@ namespace Domain.Services.UserStory.Loaders
             _userStoryRepository = repository; 
         }
 
-        public async Task<IUserStoryInformationAspect> Load(UserStoryReference Id)
+        public async Task<UserStoryInformationAspect> Load(UserStoryReference Id)
         {
             return await _userStoryRepository.LoadById(long.Parse(Id.Code)).ConfigureAwait(false);
         }
 
-        public async Task<IList<IUserStoryInformationAspect>> LoadByOwner(UserReference owner)
+        public async Task<IList<UserStoryInformationAspect>> LoadByOwner(UserReference owner)
         {
             return await _userStoryRepository.LoadByOwnerId(Guid.Parse(owner.Code)).ConfigureAwait(false);
         }

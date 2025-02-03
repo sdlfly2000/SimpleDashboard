@@ -14,12 +14,12 @@ namespace Domain.Services.UserStory.Loaders
             _taskRepository = taskRepository;
         }
 
-        public async Task<ITaskAspect> LoadById(TaskReference id)
+        public async Task<TaskAspect> LoadById(TaskReference id)
         {
             return await _taskRepository.LoadById(long.Parse(id.Code)).ConfigureAwait(false);
         }
 
-        public async Task<List<ITaskAspect>> LoadByUserStroyId(UserStoryReference id)
+        public async Task<List<TaskAspect>> LoadByUserStroyId(UserStoryReference id)
         {
             return await _taskRepository.LoadByUserStoryId(id).ConfigureAwait(false);
         }

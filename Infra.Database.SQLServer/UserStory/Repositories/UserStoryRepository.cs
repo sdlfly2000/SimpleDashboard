@@ -29,21 +29,22 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             _context = context;
         }
 
-        public async Task Add(IUserStoryInformationAspect aspect)
+        public async Task<long> Add(UserStoryInformationAspect aspect)
         {
             var entity = await _synchronizer.Synchronize(aspect);
-            await _context.UserStoryInformations.AddAsync(entity);
+            var entityAdded = await _context.UserStoryInformations.AddAsync(entity);
             await _context.SaveChangesAsync();
+            return entityAdded.Entity.Id;
         }
 
-        public async Task Update(IUserStoryInformationAspect aspect)
+        public async Task Update(UserStoryInformationAspect aspect)
         {
             var entity = await _synchronizer.Synchronize(aspect);
             _context.UserStoryInformations.Update(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IUserStoryInformationAspect> LoadById(long Id)
+        public async Task<UserStoryInformationAspect> LoadById(long Id)
         {
             var entity = await _context.Set<UserStoryInformation>()
                 .SingleOrDefaultAsync(ent => ent.Id.Equals(Id))
@@ -57,7 +58,7 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             return _mapper.Map(entity);
         }
 
-        public async Task<IList<IUserStoryInformationAspect>> LoadByOwnerId(Guid id)
+        public async Task<IList<UserStoryInformationAspect>> LoadByOwnerId(Guid id)
         {
             var userStotryInformations = await _context.Set<UserStoryInformation>()
                 .Where(entity => !string.IsNullOrEmpty(entity.OwnerId) && entity.OwnerId.Equals(id))
@@ -65,11 +66,6 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
                 .ConfigureAwait(false);
 
             return userStotryInformations.Select(_mapper.Map).ToList();
-        }
-
-        Task<long> IRepository<long, IUserStoryInformationAspect>.Add(IUserStoryInformationAspect aspect)
-        {
-            throw new NotImplementedException();
         }
     }
 }

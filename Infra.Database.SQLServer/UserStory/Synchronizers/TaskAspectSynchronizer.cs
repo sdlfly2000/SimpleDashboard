@@ -17,7 +17,7 @@ public class TaskAspectSynchronizer : ITaskAspectSynchronizer
         _context = context;
     }
 
-    public async System.Threading.Tasks.Task<Task> Synchronize(ITaskAspect aspect)
+    public async System.Threading.Tasks.Task<Task> Synchronize(TaskAspect aspect)
     {
         if (aspect.Reference is null)
         {
@@ -27,7 +27,7 @@ public class TaskAspectSynchronizer : ITaskAspectSynchronizer
                 Description = aspect.Description,
                 OwnerId = aspect.Owner.Code,
                 StartedOn = aspect.StartedOn,
-                Status = aspect.Status.Status,
+                Status = aspect.Status.ToString(),
                 ModifiedOn = aspect.ModifiedOn,
                 ModifiedById = aspect.ModifiedBy.Code,
                 CreatedOn = aspect.CreatedOn,
@@ -39,7 +39,7 @@ public class TaskAspectSynchronizer : ITaskAspectSynchronizer
         return await Update(aspect);        
     }
 
-    private async System.Threading.Tasks.Task<Task> Update(ITaskAspect aspect)
+    private async System.Threading.Tasks.Task<Task> Update(TaskAspect aspect)
     {
         var task = await _context.Tasks.FindAsync(long.Parse(aspect.Reference.Code)).ConfigureAwait(false);
 
@@ -52,7 +52,7 @@ public class TaskAspectSynchronizer : ITaskAspectSynchronizer
         task.Description = aspect.Description;
         task.OwnerId = aspect.Owner.Code;
         task.StartedOn = aspect.StartedOn;
-        task.Status = aspect.Status.Status;
+        task.Status = aspect.Status.ToString();
         task.ModifiedOn = aspect.ModifiedOn;
         task.ModifiedById = aspect.ModifiedBy.Code;
         task.CreatedOn = aspect.CreatedOn;

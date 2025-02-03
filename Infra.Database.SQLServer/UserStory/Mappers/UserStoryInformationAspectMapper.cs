@@ -8,7 +8,7 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
     [ServiceLocate(typeof(IUserStoryInformationAspectMapper))]
     public class UserStoryInformationAspectMapper : IUserStoryInformationAspectMapper
     {
-        public IUserStoryInformationAspect Map(UserStoryInformation entity)
+        public UserStoryInformationAspect Map(UserStoryInformation entity)
         {
             return new UserStoryInformationAspect(new UserStoryReference(entity.Id))
             {
