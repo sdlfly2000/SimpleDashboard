@@ -17,7 +17,7 @@ public class TaskAspectSynchronizer : ITaskAspectSynchronizer
         _context = context;
     }
 
-    public async System.Threading.Tasks.Task<Task> Synchronize(TaskAspect aspect)
+    public async System.Threading.Tasks.Task<Task> Synchronize(TaskEntity aspect)
     {
         if (aspect.Reference is null)
         {
@@ -39,7 +39,7 @@ public class TaskAspectSynchronizer : ITaskAspectSynchronizer
         return await Update(aspect);        
     }
 
-    private async System.Threading.Tasks.Task<Task> Update(TaskAspect aspect)
+    private async System.Threading.Tasks.Task<Task> Update(TaskEntity aspect)
     {
         var task = await _context.Tasks.FindAsync(long.Parse(aspect.Reference.Code)).ConfigureAwait(false);
 

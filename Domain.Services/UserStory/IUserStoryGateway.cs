@@ -5,8 +5,8 @@ namespace Domain.Services.UserStory
 {
     public interface IUserStoryGateway
     {
-        Task<IUserStory> GetUserStoryById(UserStoryReference Id);
+        Task<UserStoryEntity> GetUserStoryById(UserStoryReference Id);
 
-        Task<IList<IUserStory>> GetUserStoryByOwner(UserReference owner);
+        Task<IList<UserStoryEntity>> GetUserStoryByOwner(UserReference owner);
     }
 }

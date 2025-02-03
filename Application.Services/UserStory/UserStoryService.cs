@@ -18,19 +18,19 @@ namespace Application.Services.UserStory
 
         public CreateUserStoryResponse Create(CreateUserStoryRequest request)
         {
-            var userStory = new UserStoryDomain(new UserStoryInformationAspect()
+            var userStory = new UserStoryEntity
             {
                 Title = request.Title,
                 Description = request.Description,
                 Owner = UserReference.Parse(request.Owner),
                 StartedOn = request.StartedOn,
                 Period = request.Period,
-                Status =UserStroyStatus.Parse(request.Status),
+                Status = Enum.Parse<EnumRecordStatus>(request.Status),
                 ModifiedOn = request.ModifiedOn,
                 ModifiedBy = UserReference.Parse(request.ModifiedBy),
                 CreatedOn = request.CreatedOn,
                 CreatedBy = UserReference.Parse(request.CreatedBy)
-            });
+            };
 
             return new CreateUserStoryResponse { };
         }

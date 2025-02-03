@@ -8,9 +8,9 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
     [ServiceLocate(typeof(ITaskAspectMapper))]
     public class TaskAspectMapper : ITaskAspectMapper
     {
-        public TaskAspect Map(Task entity)
+        public TaskEntity Map(Task entity)
         {
-            return new TaskAspect
+            return new TaskEntity
             {
                 Reference = new TaskReference(entity.Id),
                 Title = entity.Title ?? string.Empty,

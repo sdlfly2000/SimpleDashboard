@@ -27,7 +27,7 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             _synchronizer = synchronizer;
         }
 
-        public async Task<TaskAspect> LoadById(long id)
+        public async Task<TaskEntity> LoadById(long id)
         {
             var task = await _context.Set<Task>().FindAsync(id).ConfigureAwait(false);
 
@@ -39,7 +39,7 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             return _mapper.Map(task);          
         }
 
-        public async Task<List<TaskAspect>> LoadByUserStoryId(UserStoryReference userStoryId)
+        public async Task<List<TaskEntity>> LoadByUserStoryId(UserStoryReference userStoryId)
         {
             var userStoryGuid = long.Parse(userStoryId.Code);
             return await _context.Set<Task>()
@@ -49,14 +49,14 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
                .ConfigureAwait(false);
         }
 
-        public async System.Threading.Tasks.Task Update(TaskAspect aspect)
+        public async System.Threading.Tasks.Task Update(TaskEntity aspect)
         {
             var task = await _synchronizer.Synchronize(aspect).ConfigureAwait(false);
             var taskUpdated = _context.Tasks.Update(task);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<long> Add(TaskAspect aspect)
+        public async Task<long> Add(TaskEntity aspect)
         {
             var task = await _synchronizer.Synchronize(aspect).ConfigureAwait(false);
             var taskAdded = await _context.Tasks.AddAsync(task).ConfigureAwait(false);

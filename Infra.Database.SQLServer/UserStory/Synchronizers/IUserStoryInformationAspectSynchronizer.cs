@@ -3,7 +3,7 @@ using Infra.Database.SQLServer.UserStory.Entities;
 
 namespace Infra.Database.SQLServer.UserStory.Synchronizers
 {
-    public interface IUserStoryInformationAspectSynchronizer : ISynchronize<UserStoryInformationAspect, UserStoryInformation>
+    public interface IUserStoryInformationAspectSynchronizer : ISynchronize<UserStoryEntity, UserStoryInformation>
     {
     }
 }

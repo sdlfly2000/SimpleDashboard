@@ -19,10 +19,9 @@ namespace Domain.Services.UserStory
             _taskAspectLoader = taskAspectLoader;
         }
 
-        public async Task<IUserStory> GetUserStoryById(UserStoryReference Id)
+        public async Task<UserStoryEntity> GetUserStoryById(UserStoryReference Id)
         {
-            var userStoryInformationAspect = await _userStoryInformationAspectLoader.Load(Id).ConfigureAwait(false);
-            var userStory = new UserStoryDomain(userStoryInformationAspect);
+            var userStory = await _userStoryInformationAspectLoader.Load(Id).ConfigureAwait(false);
             var taskAspects = await _taskAspectLoader.LoadByUserStroyId(Id).ConfigureAwait(false);
 
             userStory.Tasks.AddRange(taskAspects);
@@ -30,20 +29,19 @@ namespace Domain.Services.UserStory
             return userStory;
         }
 
-        public async Task<IList<IUserStory>> GetUserStoryByOwner(UserReference owner)
+        public async Task<IList<UserStoryEntity>> GetUserStoryByOwner(UserReference owner)
         {
-            var userStories = new List<UserStoryDomain>();
+            var userStories = new List<UserStoryEntity>();
             var userStoryInformationAspects = await _userStoryInformationAspectLoader.LoadByOwner(owner).ConfigureAwait(false);
 
             foreach(var aspect in userStoryInformationAspects)
             {
-                var userStory = new UserStoryDomain(aspect);
                 var tasks = await _taskAspectLoader.LoadByUserStroyId((aspect.Reference as UserStoryReference)!).ConfigureAwait(false);
-                userStory.Tasks.AddRange(tasks);
-                userStories.Add(userStory);
+                aspect.Tasks.AddRange(tasks);
+                userStories.Add(aspect);
             }
 
-            return (IList<IUserStory>)userStories;
+            return (IList<UserStoryEntity>)userStories;
         }
     }
 }

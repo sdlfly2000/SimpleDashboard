@@ -16,7 +16,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
         _context = context;
     }
 
-    public async Task<UserStoryInformation> Synchronize(UserStoryInformationAspect aspect)
+    public async Task<UserStoryInformation> Synchronize(UserStoryEntity aspect)
     {
         if (aspect.Reference is null)
         {
@@ -26,7 +26,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
                 Description = aspect.Description,
                 OwnerId = aspect.Owner.Code,
                 StartedOn = aspect.StartedOn,
-                Status = aspect.Status.Status,
+                Status = aspect.Status.ToString(),
                 ModifiedOn = aspect.ModifiedOn,
                 ModifiedById = aspect.ModifiedBy.Code,
                 CreatedOn = aspect.CreatedOn,
@@ -38,7 +38,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
         return await Update(aspect);        
     }
 
-    private async Task<UserStoryInformation> Update(UserStoryInformationAspect aspect)
+    private async Task<UserStoryInformation> Update(UserStoryEntity aspect)
     {
         var userStoryInformation = await _context.UserStoryInformations.FindAsync(long.Parse(aspect.Reference.Code)).ConfigureAwait(false);
 
@@ -51,7 +51,7 @@ public class UserStoryInformationAspectSynchronizer : IUserStoryInformationAspec
         userStoryInformation.Description = aspect.Description;
         userStoryInformation.OwnerId = aspect.Owner.Code;
         userStoryInformation.StartedOn = aspect.StartedOn;
-        userStoryInformation.Status = aspect.Status.Status;
+        userStoryInformation.Status = aspect.Status.ToString();
         userStoryInformation.ModifiedOn = aspect.ModifiedOn;
         userStoryInformation.ModifiedById = aspect.ModifiedBy.Code;
         userStoryInformation.CreatedOn = aspect.CreatedOn;

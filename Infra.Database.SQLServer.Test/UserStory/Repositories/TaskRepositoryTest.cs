@@ -41,7 +41,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
 
             A.CallTo(() => taskAspectMapper.Map(A<SQLServer.UserStory.Entities.Task>.Ignored)).ReturnsLazily((SQLServer.UserStory.Entities.Task task) =>
             {
-                return new TaskAspect
+                return new TaskEntity
                 {
                     Reference = new TaskReference(task.Id),
                     Title = task.Title ?? string.Empty,
@@ -80,7 +80,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
         public async Task Given_Task_When_Add_Then_TaskAspect_SavedToWorkingDatabase()
         {
             // Arrange
-            var taskAspect = new TaskAspect
+            var taskAspect = new TaskEntity
             {
                 Title = "Test1",
                 Description = "Description1",
