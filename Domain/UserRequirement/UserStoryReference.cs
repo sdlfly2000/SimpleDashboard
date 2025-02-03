@@ -1,6 +1,6 @@
 ﻿using SimpleDashboard.Common;
 
-namespace Domain.UserStory
+namespace Domain.UserRequirement
 {
     public class UserStoryReference : Reference
     {

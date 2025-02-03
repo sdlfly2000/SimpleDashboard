@@ -1,7 +1,7 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.Services;
 using Domain.Services.UserStory.Repositories;
-using Domain.UserStory;
+using Domain.UserRequirement;
 using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Entities;
 using Infra.Database.SQLServer.UserStory.Mappers;

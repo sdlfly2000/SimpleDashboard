@@ -1,16 +1,25 @@
 ﻿using Common.Core.AOP.Cache;
 using Domain.User;
 
-namespace Domain.UserStory
+namespace Domain.UserRequirement
 {
-    public class TaskAspect : ITaskAspect
+    public class UserStoryInformationAspect : IUserStoryInformationAspect
     {
+        public UserStoryInformationAspect()
+        {
+        }
+
+        public UserStoryInformationAspect(UserStoryReference reference)
+        {
+            Reference = reference;
+        }
+
         public string Title { get; set; }
         public string Description { get; set; }
         public UserReference Owner { get; set; }
         public DateTime StartedOn { get; set; }
         public TimeSpan Period { get; set; }
-        public TaskStatus Status { get; set; }
+        public UserStroyStatus Status { get; set; }
         public DateTime ModifiedOn { get; set; }
         public UserReference ModifiedBy { get; set; }
         public DateTime CreatedOn { get; set; }

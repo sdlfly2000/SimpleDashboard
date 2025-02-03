@@ -1,4 +1,4 @@
-﻿namespace Domain.UserStory
+﻿namespace Domain.UserRequirement
 {
     public interface IUserStory : IUserStoryInformationAspect
     {

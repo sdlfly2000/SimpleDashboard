@@ -1,6 +1,8 @@
-﻿namespace Domain.UserStory
+﻿using System.Numerics;
+
+namespace Domain.UserRequirement
 {
-    public struct TaskStatus
+    public struct UserStroyStatus
     {
         private readonly struct Code
         {
@@ -20,28 +22,33 @@
 
         public string Status { get; }
 
-        public TaskStatus(string status)
+        public UserStroyStatus(string status)
         {
             Status = status;
         }
 
-        public static TaskStatus Parse(string status)
+        public static explicit operator UserStroyStatus(string status)
         {
-            return new TaskStatus(status);
+            return new UserStroyStatus(status);
         }
 
-        public static TaskStatus Initial => new TaskStatus(Code.Initial);
+        public static UserStroyStatus Parse(string status)
+        {
+            return new UserStroyStatus(status);
+        }
 
-        public static TaskStatus InProgress => new TaskStatus(Code.InPrgress);
+        public static UserStroyStatus Initial => new UserStroyStatus(Code.Initial);
 
-        public static TaskStatus Complete => new TaskStatus(Code.Complete);
+        public static UserStroyStatus InProgress => new UserStroyStatus(Code.InPrgress);
 
-        public static TaskStatus Abort => new TaskStatus(Code.Abort);
+        public static UserStroyStatus Complete => new UserStroyStatus(Code.Complete);
+
+        public static UserStroyStatus Abort => new UserStroyStatus(Code.Abort);
 
         public override bool Equals(object? obj)
         {
             return obj != null
-                ? Status.Equals(((TaskStatus)obj!).Status)
+                ? Status.Equals(((UserStroyStatus)obj!).Status)
                 : false;
         }
 

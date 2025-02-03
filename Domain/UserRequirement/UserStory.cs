@@ -1,7 +1,7 @@
 ﻿using Common.Core.AOP.Cache;
 using Domain.User;
 
-namespace Domain.UserStory
+namespace Domain.UserRequirement
 {
     public class UserStoryDomain : IUserStory
     {

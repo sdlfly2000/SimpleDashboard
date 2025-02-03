@@ -1,5 +1,5 @@
 ﻿using Common.Core.DependencyInjection;
-using Domain.UserStory;
+using Domain.UserRequirement;
 using Infra.Database.SQLServer.UserStory.Context;
 using Infra.Database.SQLServer.UserStory.Entities;
 using SimpleDashboard.Common.Exceptions;

@@ -1,5 +1,5 @@
 using Domain.User;
-using Domain.UserStory;
+using Domain.UserRequirement;
 using FakeItEasy;
 using FluentAssertions;
 using Infra.Database.SQLServer.UserStory.Context;
@@ -49,7 +49,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
                     Owner = new UserReference(task.OwnerId?.ToString()),
                     StartedOn = task.StartedOn ?? default,
                     Period = task.Period.HasValue ? TimeSpan.FromTicks(task.Period.Value) : default,
-                    Status = Domain.UserStory.TaskStatus.Parse(task.Status),
+                    Status = Domain.UserRequirement.TaskStatus.Parse(task.Status),
                     ModifiedOn = task.ModifiedOn ?? default,
                     ModifiedBy = new UserReference(task.ModifiedById?.ToString()),
                     CreatedOn = task.CreatedOn ?? default,
@@ -87,7 +87,7 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
                 Owner = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4"),
                 StartedOn = DateTime.Now,
                 Period = TimeSpan.FromDays(1),
-                Status = Domain.UserStory.TaskStatus.Initial,
+                Status = Domain.UserRequirement.TaskStatus.Initial,
                 ModifiedOn = DateTime.Now,
                 ModifiedBy = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4"),
                 CreatedOn = DateTime.Now,

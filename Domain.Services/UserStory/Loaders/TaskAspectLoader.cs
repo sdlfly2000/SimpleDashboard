@@ -1,6 +1,6 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Repositories;
-using Domain.UserStory;
+using Domain.UserRequirement;
 
 namespace Domain.Services.UserStory.Loaders
 {

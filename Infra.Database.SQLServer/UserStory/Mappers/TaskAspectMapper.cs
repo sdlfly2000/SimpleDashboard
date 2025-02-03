@@ -1,8 +1,8 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.User;
-using Domain.UserStory;
+using Domain.UserRequirement;
 using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
-using TaskStatus = Domain.UserStory.TaskStatus;
+using TaskStatus = Domain.UserRequirement.TaskStatus;
 
 namespace Infra.Database.SQLServer.UserStory.Mappers
 {

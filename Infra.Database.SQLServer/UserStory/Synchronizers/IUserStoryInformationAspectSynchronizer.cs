@@ -1,4 +1,4 @@
-﻿using Domain.UserStory;
+﻿using Domain.UserRequirement;
 using Infra.Database.SQLServer.UserStory.Entities;
 
 namespace Infra.Database.SQLServer.UserStory.Synchronizers

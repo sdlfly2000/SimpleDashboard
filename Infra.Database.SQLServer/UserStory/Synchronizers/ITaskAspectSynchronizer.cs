@@ -1,4 +1,4 @@
-﻿using Domain.UserStory;
+﻿using Domain.UserRequirement;
 using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
 
 namespace Infra.Database.SQLServer.UserStory.Synchronizers

@@ -1,6 +1,6 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.User;
-using Domain.UserStory;
+using Domain.UserRequirement;
 using Infra.Database.SQLServer.UserStory.Entities;
 
 namespace Infra.Database.SQLServer.UserStory.Mappers

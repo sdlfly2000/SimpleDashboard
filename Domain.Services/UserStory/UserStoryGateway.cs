@@ -1,7 +1,7 @@
 ﻿using Common.Core.DependencyInjection;
 using Domain.Services.UserStory.Loaders;
 using Domain.User;
-using Domain.UserStory;
+using Domain.UserRequirement;
 
 namespace Domain.Services.UserStory
 {

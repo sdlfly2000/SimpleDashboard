@@ -2,7 +2,7 @@
 using Common.Core.DependencyInjection;
 using Domain.Services.UserStory;
 using Domain.User;
-using Domain.UserStory;
+using Domain.UserRequirement;
 
 namespace Application.Services.UserStory
 {

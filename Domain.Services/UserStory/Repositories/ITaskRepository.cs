@@ -1,4 +1,4 @@
-﻿using Domain.UserStory;
+﻿using Domain.UserRequirement;
 
 namespace Domain.Services.UserStory.Repositories
 {

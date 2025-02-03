@@ -1,9 +1,9 @@
-﻿using Common.Core.Domain;
+﻿using Common.Core.AOP.Cache;
 using Domain.User;
 
-namespace Domain.UserStory
+namespace Domain.UserRequirement
 {
-    public interface ITaskAspect : IAspect
+    public class TaskAspect : ITaskAspect
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -15,5 +15,6 @@ namespace Domain.UserStory
         public UserReference ModifiedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public UserReference CreatedBy { get; set; }
+        public IReference Reference { get; set; }
     }
 }
