@@ -1,4 +1,6 @@
-﻿using Infra.Database.SQLServer.UserStory.Entities;
+﻿using System;
+using System.Collections.Generic;
+using Infra.Database.SQLServer.UserStory.Entities;
 using Microsoft.EntityFrameworkCore;
 using Task = Infra.Database.SQLServer.UserStory.Entities.Task;
 
@@ -17,10 +19,11 @@ public partial class UserStoryDbContext : DbContext
 
     public virtual DbSet<Task> Tasks { get; set; }
 
+    public virtual DbSet<UserRequirement> UserRequirements { get; set; }
+
     public virtual DbSet<UserStoryInformation> UserStoryInformations { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Task>(entity =>
@@ -42,6 +45,21 @@ public partial class UserStoryDbContext : DbContext
                 .HasConstraintName("FK__Tasks__UserStory__693CA210");
         });
 
+        modelBuilder.Entity<UserRequirement>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__UserRequ__3214EC07E92A1791");
+
+            entity.Property(e => e.CreatedById).HasMaxLength(36);
+            entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(255);
+            entity.Property(e => e.ModifiedById).HasMaxLength(36);
+            entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+            entity.Property(e => e.OwnerId).HasMaxLength(36);
+            entity.Property(e => e.StartedOn).HasColumnType("datetime");
+            entity.Property(e => e.Status).HasMaxLength(20);
+            entity.Property(e => e.Title).HasMaxLength(255);
+        });
+
         modelBuilder.Entity<UserStoryInformation>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__UserStor__3214EC07E439F9A1");
@@ -56,6 +74,10 @@ public partial class UserStoryDbContext : DbContext
             entity.Property(e => e.StartedOn).HasColumnType("datetime");
             entity.Property(e => e.Status).HasMaxLength(20);
             entity.Property(e => e.Title).HasMaxLength(255);
+
+            entity.HasOne(d => d.UserRequirement).WithMany(p => p.UserStoryInformations)
+                .HasForeignKey(d => d.UserRequirementId)
+                .HasConstraintName("FK__UserStory__UserR__6EF57B66");
         });
 
         OnModelCreatingPartial(modelBuilder);

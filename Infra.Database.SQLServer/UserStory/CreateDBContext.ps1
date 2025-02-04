@@ -7,4 +7,5 @@ dotnet ef dbcontext scaffold `
 --force `
 `
 --table dbo.UserStoryInformation `
+--table dbo.UserRequirements `
 --table dbo.Tasks

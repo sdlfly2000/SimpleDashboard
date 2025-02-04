@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Infra.Database.SQLServer.UserStory.Entities;
 
-public partial class UserStoryInformation
+public partial class UserRequirement
 {
     public long Id { get; set; }
 
@@ -15,6 +15,8 @@ public partial class UserStoryInformation
 
     public DateTime? StartedOn { get; set; }
 
+    public long? Period { get; set; }
+
     public string? Status { get; set; }
 
     public DateTime? ModifiedOn { get; set; }
@@ -25,11 +27,5 @@ public partial class UserStoryInformation
 
     public string? CreatedById { get; set; }
 
-    public long? Period { get; set; }
-
-    public long? UserRequirementId { get; set; }
-
-    public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
-
-    public virtual UserRequirement? UserRequirement { get; set; }
+    public virtual ICollection<UserStoryInformation> UserStoryInformations { get; set; } = new List<UserStoryInformation>();
 }

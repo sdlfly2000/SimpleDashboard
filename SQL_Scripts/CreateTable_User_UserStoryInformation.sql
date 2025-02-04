@@ -18,8 +18,11 @@ create table UserStoryInformation (
     ModifiedById nvarchar(36),
 	CreatedOn datetime,
     CreatedById nvarchar(36),
+    UserRequirementId BIGINT,
+
     primary key (Id),
     foreign key (OwnerId) references UserEntities(Id),
     foreign key (ModifiedById) references UserEntities(Id),
-    foreign key (CreatedById) references UserEntities(Id)    
+    foreign key (CreatedById) references UserEntities(Id),   
+    foreign key (UserRequirementId) references UserRequirements(Id)    
 );
