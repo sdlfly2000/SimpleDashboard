@@ -10,6 +10,11 @@ namespace Domain.User
 
         public static UserReference Parse(string code)
         {
+            if (string.IsNullOrEmpty(code))
+            {
+                return default;
+            }
+
             return new UserReference(code);
         }
     }
