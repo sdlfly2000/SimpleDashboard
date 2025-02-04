@@ -27,10 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard.Common", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDashboard.Extentions", "SimpleDashboard.Extentions\SimpleDashboard.Extentions.csproj", "{4C30F5A7-A2FF-4BEF-BAA0-76DD3D34D4CA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Scripts", "SQL Scripts", "{F05C4097-0C29-4409-92B6-FAA1D6F68C7D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL_Scripts", "SQL_Scripts", "{F05C4097-0C29-4409-92B6-FAA1D6F68C7D}"
 	ProjectSection(SolutionItems) = preProject
-		CreateTable_Tasks.sql = CreateTable_Tasks.sql
-		CreateTable_User_UserStoryInformation.sql = CreateTable_User_UserStoryInformation.sql
+		SQL_Scripts\CreateTable_Tasks.sql = SQL_Scripts\CreateTable_Tasks.sql
+		SQL_Scripts\CreateTable_User_UserStoryInformation.sql = SQL_Scripts\CreateTable_User_UserStoryInformation.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B415415F-1457-4D48-AF25-9EEEB7C1C1B2}"
