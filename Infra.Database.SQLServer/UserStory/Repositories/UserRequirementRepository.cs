@@ -10,7 +10,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace Infra.Database.SQLServer.UserStory.Repositories
 {
-    [ServiceLocate(typeof(IUserStoryRepository))]
+    [ServiceLocate(typeof(IUserRequirementRepository))]
     public class UserRequirementRepository : IUserRequirementRepository
     {
         private readonly UserStoryDbContext _context;
