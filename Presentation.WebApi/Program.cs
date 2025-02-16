@@ -4,6 +4,7 @@ using Common.Core.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using SimpleDashboard.Common.Middlewares;
 using SimpleDashboard.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +31,7 @@ builder.Services.AddCors(option =>
 builder.Services.AddMemoryCache();
 
 builder.Services.AddSQLServerDatabase(builder.Configuration.GetConnectionString("SimpleDashboard")!);
-builder.Services.RegisterDomain("Application.Services", "Domain.Services", "Infra.Database.SQLServer");
+builder.Services.RegisterDomain("Application.Services", "Domain.Services", "Infra.Database.SQLServer", "SimpleDashboard.Common");
 
 var app = builder.Build();
 
@@ -52,5 +53,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<CurrentContextAssignment>();
 
 app.Run();
