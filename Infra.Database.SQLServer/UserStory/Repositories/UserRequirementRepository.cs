@@ -93,11 +93,11 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             {
                 Title = userRequirement.Title,
                 Description = userRequirement.Description,
-                CreatedBy = UserReference.Parse(userRequirement.CreatedById),
+                CreatedBy = UserReference.Parse(Guid.Parse(userRequirement.CreatedById)),
                 CreatedOn = userRequirement.CreatedOn.HasValue ? userRequirement.CreatedOn.Value : default,
-                ModifiedBy = UserReference.Parse(userRequirement.ModifiedById),
+                ModifiedBy = UserReference.Parse(Guid.Parse(userRequirement.ModifiedById)),
                 ModifiedOn = userRequirement.ModifiedOn.HasValue ? userRequirement.ModifiedOn.Value : default,
-                Owner = UserReference.Parse(userRequirement.OwnerId),
+                Owner = UserReference.Parse(Guid.Parse(userRequirement.OwnerId)),
                 StartedOn = userRequirement.StartedOn.HasValue ? userRequirement.StartedOn.Value : default,
                 Status = Enum.Parse<EnumRecordStatus>(userRequirement.Status)
             };

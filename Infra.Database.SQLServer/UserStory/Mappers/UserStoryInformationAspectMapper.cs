@@ -14,13 +14,13 @@ namespace Infra.Database.SQLServer.UserStory.Mappers
             {
                 Title = entity.Title ?? string.Empty,
                 Description = entity.Description ?? string.Empty,
-                Owner = new UserReference(entity.OwnerId ?? string.Empty.ToString()),
+                Owner = new UserReference(Guid.Parse(entity.OwnerId)),
                 StartedOn = entity.StartedOn ?? default,
                 Status = entity.Status != null ? Enum.Parse<EnumRecordStatus>(entity.Status) : default,
                 ModifiedOn = entity.ModifiedOn ?? default,
-                ModifiedBy = new UserReference(entity.ModifiedById ?? string.Empty.ToString()),
+                ModifiedBy = new UserReference(Guid.Parse(entity.ModifiedById)),
                 CreatedOn = entity.CreatedOn ?? default,
-                CreatedBy = new UserReference(entity.CreatedById ?? string.Empty.ToString())
+                CreatedBy = new UserReference(Guid.Parse(entity.CreatedById))
             };
         }
     }

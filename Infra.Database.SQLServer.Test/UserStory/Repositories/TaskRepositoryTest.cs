@@ -46,14 +46,14 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
                     Reference = new TaskReference(task.Id),
                     Title = task.Title ?? string.Empty,
                     Description = task.Description ?? string.Empty,
-                    Owner = new UserReference(task.OwnerId?.ToString()),
+                    Owner = new UserReference(Guid.Parse(task.OwnerId)),
                     StartedOn = task.StartedOn ?? default,
                     Period = task.Period.HasValue ? TimeSpan.FromTicks(task.Period.Value) : default,
                     Status = Enum.Parse<EnumRecordStatus>(task.Status),
                     ModifiedOn = task.ModifiedOn ?? default,
-                    ModifiedBy = new UserReference(task.ModifiedById?.ToString()),
+                    ModifiedBy = new UserReference(Guid.Parse(task.ModifiedById)),
                     CreatedOn = task.CreatedOn ?? default,
-                    CreatedBy = new UserReference(task.CreatedById?.ToString())
+                    CreatedBy = new UserReference(Guid.Parse(task.CreatedById))
                 };
             });
 
@@ -84,14 +84,14 @@ namespace Infra.Database.SQLServer.Test.UserStory.Repositories
             {
                 Title = "Test1",
                 Description = "Description1",
-                Owner = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4"),
+                Owner = new UserReference(Guid.Parse("9637077f-9eb9-43e2-a8fd-b39b5f41def4")),
                 StartedOn = DateTime.Now,
                 Period = TimeSpan.FromDays(1),
                 Status = EnumRecordStatus.INITIAL,
                 ModifiedOn = DateTime.Now,
-                ModifiedBy = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4"),
+                ModifiedBy = new UserReference(Guid.Parse("9637077f-9eb9-43e2-a8fd-b39b5f41def4")),
                 CreatedOn = DateTime.Now,
-                CreatedBy = new UserReference("9637077f-9eb9-43e2-a8fd-b39b5f41def4")
+                CreatedBy = new UserReference(Guid.Parse("9637077f-9eb9-43e2-a8fd-b39b5f41def4"))
             };
 
             using var userStoryDbContext = DbContextFactory.Create<UserStoryDbContext>();

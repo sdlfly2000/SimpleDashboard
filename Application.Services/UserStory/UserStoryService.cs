@@ -22,14 +22,14 @@ namespace Application.Services.UserStory
             {
                 Title = request.Title,
                 Description = request.Description,
-                Owner = UserReference.Parse(request.Owner),
+                Owner = UserReference.Parse(Guid.Parse(request.Owner)),
                 StartedOn = request.StartedOn,
                 Period = request.Period,
                 Status = Enum.Parse<EnumRecordStatus>(request.Status),
                 ModifiedOn = request.ModifiedOn,
-                ModifiedBy = UserReference.Parse(request.ModifiedBy),
+                ModifiedBy = UserReference.Parse(Guid.Parse(request.ModifiedBy)),
                 CreatedOn = request.CreatedOn,
-                CreatedBy = UserReference.Parse(request.CreatedBy)
+                CreatedBy = UserReference.Parse(Guid.Parse(request.CreatedBy))
             };
 
             return new CreateUserStoryResponse { };
