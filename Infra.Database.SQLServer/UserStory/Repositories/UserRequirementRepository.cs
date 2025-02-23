@@ -59,6 +59,26 @@ namespace Infra.Database.SQLServer.UserStory.Repositories
             return entry.Entity.Id;
         }
 
+        public async Task AssignUserStory(long userRequirementId, long userStoryId)
+        {
+            var userRequirement = await _context.UserRequirements.FindAsync(userRequirementId).ConfigureAwait(false);
+
+            if (userRequirement is null)
+            {
+                throw new NotFoundFromDatabaseException<UserRequirementEntity>(userRequirementId.ToString());
+            }
+
+            var userStory = await _context.UserStoryInformations.FindAsync(userStoryId).ConfigureAwait(false);
+
+            if (userStory is null)
+            {
+                throw new NotFoundFromDatabaseException<UserStoryInformation>(userStoryId.ToString());
+            }
+
+            userRequirement.UserStoryInformations.Add(userStory);
+
+            await _context.SaveChangesAsync().ConfigureAwait(false);
+        }
 
         #region Private Methods
 

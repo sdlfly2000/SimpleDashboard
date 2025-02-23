@@ -26,7 +26,7 @@ namespace Domain.UserRequirement
                 Owner = CreatedBy,
                 StartedOn = currentDateTime,
                 Period = TimeSpan.FromDays(1), // Default period is 1 day
-                Status = EnumRecordStatus.INPROGRESS,
+                Status = EnumRecordStatus.INITIAL,
                 ModifiedOn = currentDateTime,
                 ModifiedBy = CreatedBy,
                 CreatedOn = currentDateTime,
