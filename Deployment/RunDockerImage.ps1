@@ -3,7 +3,7 @@ Write-Host "Run SimpleDashboard docker image" -ForegroundColor DarkCyan
 $Password = "sdl@1215"
 $User = "sdlfly2000"
 $ComputerName = "homeserver"
-$Command = 'sudo docker run -d --name SimpleDashboard -p 8080:80 -p 8443:443 simpledashboard:latest'
+$Command = 'sudo docker stack deploy -c /home/sdlfly2000/Projects/SimpleDashboard/docker-compose.yml SimpleDashboard'
 $ExpectedString = "[sudo] password for " + $User + ":"
 
 $secpasswd = ConvertTo-SecureString $Password -AsPlainText -Force

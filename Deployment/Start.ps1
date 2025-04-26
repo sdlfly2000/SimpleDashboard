@@ -31,10 +31,6 @@ Start-Sleep -Seconds 2
 ./StopDockerContainer.ps1
 Start-Sleep -Seconds 2
 
-# step remove Container
-./RemoveDockerContainer.ps1
-Start-Sleep -Seconds 2
-
 # step run Container
 ./RunDockerImage.ps1
 Start-Sleep -Seconds 2

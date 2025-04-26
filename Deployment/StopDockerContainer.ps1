@@ -3,7 +3,7 @@ Write-Host "Stop SimpleDashboard docker Container" -ForegroundColor DarkCyan
 $Password = "sdl@1215"
 $User = "sdlfly2000"
 $ComputerName = "homeserver"
-$Command = 'sudo docker stop SimpleDashboard'
+$Command = 'sudo docker stack rm SimpleDashboard'
 $ExpectedString = "[sudo] password for " + $User + ":"
 
 $secpasswd = ConvertTo-SecureString $Password -AsPlainText -Force

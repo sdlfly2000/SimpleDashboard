@@ -1,0 +1,61 @@
+version: '3.8'
+
+x-service-default: &service-default
+  logging:
+    options:
+      max-size: '100m'
+      max-file: '2'
+
+services:
+  simpledashboard:
+    <<: *service-default
+    image: simpledashboard:latest
+    hostname: simpledashboard.homeserver.activator.com
+    
+    environment:
+      ASPNETCORE_ENVIRONMENT: 'Production'
+    
+    networks:
+      traefik_ingress_network:
+      
+    ports:
+      - target: 4302
+        published: 4302
+        mode: host
+
+    labels:
+      co.elastic.logs/enabled: 'true'
+      traefik.enable: 'true'
+      traefik.http.services.simpledashboard-dns.loadbalancer.server.port: '4302'
+      traefik.http.services.simpledashboard-dns.loadbalancer.server.scheme: 'http'
+      traefik.http.routers.simpledashboard-dns-http.rule: 'Host(`simpledashboard.activator.com`)'
+      traefik.http.routers.simpledashboard-dns-http.entrypoints: 'web'
+      traefik.http.routers.simpledashboard-dns-http.priority: '1000'
+      traefik.http.routers.simpledashboard-dns-https.rule: 'Host(`simpledashboard.activator.com`)'
+      traefik.http.routers.simpledashboard-dns-https.entrypoints: 'websecure'
+      traefik.http.routers.simpledashboard-dns-https.priority: '1000'
+      traefik.http.routers.simpledashboard-dns-https.tls:
+      traefik.docker.network: 'logs-and-monitoring_ingress'
+
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 180s
+      labels:
+        traefik.enable: 'true'
+        traefik.http.services.simpledashboard-dns.loadbalancer.server.port: '4302'
+        traefik.http.services.simpledashboard-dns.loadbalancer.server.scheme: 'http'
+        traefik.http.routers.simpledashboard-dns-http.rule: 'Host(`simpledashboard.activator.com`)'
+        traefik.http.routers.simpledashboard-dns-http.entrypoints: 'web'
+        traefik.http.routers.simpledashboard-dns-http.priority: '1000'
+        traefik.http.routers.simpledashboard-dns-https.rule: 'Host(`simpledashboard.activator.com`)'
+        traefik.http.routers.simpledashboard-dns-https.entrypoints: 'websecure'
+        traefik.http.routers.simpledashboard-dns-https.priority: '1000'
+        traefik.http.routers.simpledashboard-dns-https.tls:
+        traefik.docker.network: 'logs-and-monitoring_ingress'
+
+networks:
+  traefik_ingress_network:
+    external: true
+    name: "logs-and-monitoring_ingress"

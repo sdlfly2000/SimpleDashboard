@@ -3,7 +3,7 @@ Write-Host "Create SimpleDashboard docker image" -ForegroundColor DarkCyan
 $Password = "sdl@1215"
 $User = "sdlfly2000"
 $ComputerName = "homeserver"
-$Command = 'sudo docker build -t simpledashboard /home/sdlfly2000/Projects/SimpleDashboard/'
+$Command = 'sudo docker build -t simpledashboard:latest /home/sdlfly2000/Projects/SimpleDashboard/'
 $ExpectedString = "[sudo] password for " + $User + ":"
 
 $secpasswd = ConvertTo-SecureString $Password -AsPlainText -Force
