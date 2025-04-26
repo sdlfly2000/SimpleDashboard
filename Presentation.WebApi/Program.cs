@@ -55,5 +55,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseMiddleware<CurrentContextAssignment>();
+app.UseMiddleware<RequestArrivalMiddleware>();
 
 app.Run();
