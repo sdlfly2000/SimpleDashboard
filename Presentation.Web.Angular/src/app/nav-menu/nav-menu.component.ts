@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-nav-menu',
@@ -26,11 +27,11 @@ export class NavMenuComponent {
   }
 
   GoToLogin() {
-    window.location.href = "https://homeserver/#/login?returnUrl=" + this.baseUrl;
+    window.location.href = environment.AuthServiceBaseUrl + "#/login?returnUrl=" + this.baseUrl;
   }
 
   GoToRegister() {
-    window.location.href = "https://homeserver";
+    window.location.href = environment.AuthServiceBaseUrl;
   }
 
   collapse() {
