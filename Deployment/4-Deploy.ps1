@@ -5,7 +5,7 @@ function UploadProject(){
 	[string]$projectName,
 	[string]$username = "sdlfly2000",
 	[string]$password = "sdl@1215",
-	[string]$urlDestination = "ftp://homeserver/Projects/SimpleDashboard"
+	[string]$urlDestination = "ftp://homeserver2/Projects/SimpleDashboard"
 	)
 	$webclient = New-Object -TypeName System.Net.WebClient
 	$webclient.Credentials = New-Object System.Net.NetworkCredential($username,$password)
@@ -22,5 +22,8 @@ function UploadProject(){
 Write-Host "Uploading SimpleDashboard" -ForegroundColor DarkCyan
 $source = "../Artifacts/SimpleDashboard.zip"
 $projectName= "SimpleDashboard"
+$urlDests = @("ftp://homeserver2/Projects/SimpleDashboard","ftp://homeserver/Projects/SimpleDashboard")
 
-UploadProject -sourceFile $source -projectName $projectName
+foreach($urlDest in $urlDests){
+	UploadProject -sourceFile $source -urlDestination $urlDest
+}
