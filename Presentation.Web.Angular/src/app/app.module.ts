@@ -17,19 +17,23 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 import { NavSiteMapComponent } from './nav-sitemap/nav-sitemap.component';
+import { MainService } from './main/main.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    NavSiteMapComponent
+    NavSiteMapComponent,
+    MainComponent
   ],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
-    ButtonModule, 
+    ButtonModule,
+    InputTextModule,
     RouterModule.forRoot([
         { path: '', component: MainComponent, pathMatch: 'full' },
     ])
@@ -40,6 +44,7 @@ import { NavSiteMapComponent } from './nav-sitemap/nav-sitemap.component';
     { provide: "BASE_URL", useValue: document.getElementsByTagName('base')[0].href },
     { provide: AuthService },
     { provide: QueryStringService },
+    { provide: MainService },
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
     providePrimeNG({

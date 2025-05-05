@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { QueryStringService } from '../../services/shared.QueryString.service';
+import { MainService } from './main.service';
 
 @Component({
   selector: 'app-main',
@@ -11,8 +12,16 @@ import { QueryStringService } from '../../services/shared.QueryString.service';
 })
 export class MainComponent {
   title: string = "Main Page";
+  RequirementTitle: string = "";
+  RequirementDescription: string = "";
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private authService: AuthService, private queryStringService: QueryStringService, @Inject("BASE_URL") private baseUrl: string) {
+  constructor(
+    private httpClient: HttpClient,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private queryStringService: QueryStringService,
+    private mainService: MainService,
+    @Inject("BASE_URL") private baseUrl: string) {
     let jwtToken = this.queryStringService.Get("jwtToken");
     let displayName = this.queryStringService.Get("userDisplayName");
     let userId = this.queryStringService.Get("userid");
@@ -24,6 +33,6 @@ export class MainComponent {
   }
 
   onClick() {
-    this.httpClient.get<string>(this.baseUrl + "api/WeatherForecast").subscribe(response => console.log(response));
+    this.mainService.NewUserRequirement(this.RequirementTitle, this.RequirementDescription).subscribe(response => { console.log(response) });
   }
 }

@@ -4,18 +4,21 @@ using Domain.Services.UserStory.Repositories;
 using Domain.User;
 using Domain.UserRequirement;
 using SimpleDashboard.Common;
+using SimpleDashboard.Common.Interceptors;
+using SimpleDashboard.Common.Metric;
 
 namespace Application.Services.UserRequirement
 {
     [ServiceLocate(typeof(IUserRequirementService))]
-    public class UserRequirementService : IUserRequirementService
+    public class UserRequirementService : BaseObject, IUserRequirementService
     {
         private IUserRequirementRepository _userRequirementRepository;
         private CurrentContext _context;
 
         public UserRequirementService(
+            IServiceProvider serviceProvider,
             IUserRequirementRepository repository,
-            CurrentContext context)
+            CurrentContext context) : base(serviceProvider)
         {
             _userRequirementRepository = repository;
             _context = context;
@@ -37,6 +40,7 @@ namespace Application.Services.UserRequirement
             return response;
         }
 
+        [LogTrace(EnumMetricMeasure.AppCreateUserRequirement)]
         public async Task<CreateUserRequirementResponse> Create(CreateUserRequirementRequest request)
         {
             var userRequirement = MapToEntity(
@@ -47,7 +51,8 @@ namespace Application.Services.UserRequirement
 
             return new CreateUserRequirementResponse
             {
-                UserRequirementId = usrRequirementId
+                UserRequirementId = usrRequirementId,
+                TraceId = _context.TraceId,
             };
         }
 

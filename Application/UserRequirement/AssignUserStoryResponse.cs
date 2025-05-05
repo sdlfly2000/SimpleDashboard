@@ -9,5 +9,7 @@
 
         public IList<Exception> Exceptions { get; set; }
         public bool IsSuccess { get => Exceptions.Any();}
+
+        public string TraceId { get; set; } = string.Empty;
     }
 }

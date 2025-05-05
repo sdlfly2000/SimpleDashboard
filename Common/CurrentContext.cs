@@ -6,5 +6,7 @@ namespace SimpleDashboard.Common
     public class CurrentContext
     {
         public Guid User { get; set;}
+
+        public string TraceId { get; set; }
     }
 }

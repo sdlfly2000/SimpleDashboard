@@ -3,15 +3,16 @@ using Common.Core.DependencyInjection;
 using Domain.Services.UserStory;
 using Domain.User;
 using Domain.UserRequirement;
+using SimpleDashboard.Common;
 
 namespace Application.Services.UserStory
 {
     [ServiceLocate(typeof(IUserStoryService))]
-    public class UserStoryService : IUserStoryService
+    public class UserStoryService : BaseObject, IUserStoryService
     {
         private readonly IUserStoryGateway _userStoryGateway;
 
-        public UserStoryService(IUserStoryGateway persistor)
+        public UserStoryService(IUserStoryGateway persistor, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             _userStoryGateway = persistor;
         }

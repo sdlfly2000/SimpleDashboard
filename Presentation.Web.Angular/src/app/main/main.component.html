@@ -1,4 +1,6 @@
 <div class="">
   <h1>{{title}}</h1>
-  <button class="btn btn-primary" (click)="onClick()" >Click</button>
+  <input type="text" pInputText [(ngModel)]="RequirementTitle" placeholder="Title"/>
+  <input type="text" pInputText [(ngModel)]="RequirementDescription" placeholder="Description" />
+  <button class="btn btn-primary" (click)="onClick()">Click</button>
 </div>

@@ -12,6 +12,8 @@ namespace Application.UserRequirement
 
         public IList<Exception> Exceptions { get; set; }
 
-        public bool IsSuccess => Exceptions.Any();
+        public bool IsSuccess => !Exceptions.Any();
+
+        public string TraceId { get; set; } = string.Empty;
     }
 }
