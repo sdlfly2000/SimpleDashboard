@@ -1,11 +1,5 @@
 use SimpleDashboard;
 
-create table UserEntities (
-	Id nvarchar(36),
-    Name nvarchar(255),
-    primary key (Id)
-);
-
 create table UserStoryInformation (
 	Id BIGINT IDENTITY(1,1),
     Title nvarchar(255),
