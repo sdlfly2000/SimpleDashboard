@@ -1,3 +1,6 @@
+USE [SimpleDashboard]
+GO
+
 create table Tasks (
 	Id BIGINT IDENTITY(1, 1),
     Title nvarchar(255),
@@ -18,3 +21,5 @@ create table Tasks (
     foreign key (CreatedById) references UserEntities(Id),    
     foreign key (UserStoryId) references UserStoryInformation(Id)    
 );
+
+GO

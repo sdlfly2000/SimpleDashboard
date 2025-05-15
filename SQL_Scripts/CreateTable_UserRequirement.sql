@@ -1,3 +1,6 @@
+USE [SimpleDashboard]
+GO
+
 create table UserRequirements (
 	Id BIGINT IDENTITY(1, 1),
     Title nvarchar(255),
@@ -16,3 +19,4 @@ create table UserRequirements (
     foreign key (ModifiedById) references UserEntities(Id),
     foreign key (CreatedById) references UserEntities(Id)
 );
+GO

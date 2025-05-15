@@ -1,4 +1,5 @@
-use SimpleDashboard;
+USE [SimpleDashboard]
+GO
 
 create table UserStoryInformation (
 	Id BIGINT IDENTITY(1,1),
@@ -20,3 +21,4 @@ create table UserStoryInformation (
     foreign key (CreatedById) references UserEntities(Id),   
     foreign key (UserRequirementId) references UserRequirements(Id)    
 );
+GO

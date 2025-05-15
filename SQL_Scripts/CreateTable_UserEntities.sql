@@ -1,5 +1,9 @@
 USE [SimpleDashboard]
 GO
 
-CREATE SYNONYM [dbo].[UserEntities] FOR [Identity].[dbo].[User]
+create table UserEntities (
+	Id nvarchar(36),
+    Name nvarchar(255),
+    primary key (Id)
+);
 GO

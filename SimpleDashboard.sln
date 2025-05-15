@@ -30,8 +30,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL_Scripts", "SQL_Scripts", "{F05C4097-0C29-4409-92B6-FAA1D6F68C7D}"
 	ProjectSection(SolutionItems) = preProject
 		SQL_Scripts\CreateTable_Tasks.sql = SQL_Scripts\CreateTable_Tasks.sql
+		SQL_Scripts\CreateTable_UserEntities.sql = SQL_Scripts\CreateTable_UserEntities.sql
 		SQL_Scripts\CreateTable_UserRequirement.sql = SQL_Scripts\CreateTable_UserRequirement.sql
-		SQL_Scripts\CreateTable_User_UserStoryInformation.sql = SQL_Scripts\CreateTable_User_UserStoryInformation.sql
+		SQL_Scripts\CreateTable_UserStoryInformation.sql = SQL_Scripts\CreateTable_UserStoryInformation.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B415415F-1457-4D48-AF25-9EEEB7C1C1B2}"
