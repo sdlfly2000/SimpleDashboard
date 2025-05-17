@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyNetQ" Version="7.8.0" />
+    <PackageReference Include="EasyNetQ.Serialization.NewtonsoftJson" Version="7.8.0" />
     <PackageReference Include="IdeaActivator.Common.Core" Version="1.1.10" />
     <PackageReference Include="MrAdvice" Version="2.19.1" />
     <PackageReference Include="Serilog" Version="4.2.0" />
