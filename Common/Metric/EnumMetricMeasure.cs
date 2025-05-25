@@ -4,6 +4,7 @@
     {
         None = 0,
         AppCreateUserRequirement = 1,
-        AppAssignUserStory = 2
+        AppAssignUserStory = 2,
+        AppRegisterUser = 3
     }
 }

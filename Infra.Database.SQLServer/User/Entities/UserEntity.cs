@@ -1,4 +1,7 @@
-﻿namespace Infra.Database.SQLServer.User.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Infra.Database.SQLServer.User.Entities;
 
 public partial class UserEntity
 {

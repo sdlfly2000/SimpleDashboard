@@ -1,5 +1,4 @@
-﻿using Common.Core.DependencyInjection;
-using EasyNetQ;
+﻿using EasyNetQ;
 using EasyNetQ.Topology;
 using MessageQueue.RabbitMQ.MessageQueue;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,19 +6,9 @@ using System.Reflection;
 
 namespace MessageQueue.RabbitMQ
 {
-    [ServiceLocate(default, ServiceType.Singleton)]
     public class MessageQueueRegister
     {
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IAdvancedBus _advancedBus;
-
-        public MessageQueueRegister(IServiceProvider serviceProvider, IBus eventBus)
-        {
-            _serviceProvider = serviceProvider;
-            _advancedBus = eventBus.Advanced;
-        }
-
-        public void Register(params string[] domains)
+        public static void Register(IEnumerable<IAMQPConsumer> consumers, IAdvancedBus advancedBus, params string[] domains)
         {
             var asms = domains.Select(domain => Assembly.Load(domain)).ToList();
             var impls = asms.SelectMany(asm => asm.GetExportedTypes().Where(t => !t.IsInterface).ToList()).ToList();
@@ -34,15 +23,20 @@ namespace MessageQueue.RabbitMQ
                     var routingKeys = (consumer as AMQPConsumerAttribute).RoutingKeys;
 
                     var queueName = $"{messageTypeName.Name}-{consumerTypeName.Name}-({string.Join('.', routingKeys)})";
-                    var queue = _advancedBus.QueueDeclare(queueName);
-                    var exchange = _advancedBus.ExchangeDeclare(messageTypeName.Name, ExchangeType.Topic);
+                    var queue = advancedBus.QueueDeclare(queueName);
+                    var exchange = advancedBus.ExchangeDeclare(messageTypeName.Name, ExchangeType.Topic);
+
+                    var poisonQueue = advancedBus.QueueDeclare($"{messageTypeName.Name}.poison");
+                    var poisonExchange = advancedBus.ExchangeDeclare($"{messageTypeName.Name}.poison", ExchangeType.Topic);
                     foreach (var routingKey in routingKeys)
                     {
-                        _advancedBus.Bind(exchange, queue, routingKey);
+                        advancedBus.Bind(exchange, queue, routingKey);
                     }
 
-                    var consumerService = _serviceProvider.GetRequiredService(consumerTypeName) as IAMQPConsumer;
-                    _advancedBus.Consume(queue, consumerService.ProcessMessage);
+                    advancedBus.Bind(poisonExchange, poisonQueue, "");
+
+                    var consumerService = consumers.FirstOrDefault(c => c.GetType() == consumerTypeName);
+                    advancedBus.Consume(queue, consumerService.OnMessage);
                 }
             }
         }

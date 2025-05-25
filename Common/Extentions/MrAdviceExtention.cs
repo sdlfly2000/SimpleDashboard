@@ -8,8 +8,9 @@ namespace SimpleDashboard.Common.Extentions
         public static IServiceProvider? GetMemberServiceProvider(this MethodAsyncAdviceContext context)
         {
             var targetType = context.Target.GetType();
+            var baseType = targetType.BaseType;
 
-            return targetType.GetRuntimeFields()
+            return baseType.GetRuntimeFields()
                 .SingleOrDefault(field => field.FieldType == typeof(IServiceProvider))?
                 .GetValue(context.Target) as IServiceProvider;
         }

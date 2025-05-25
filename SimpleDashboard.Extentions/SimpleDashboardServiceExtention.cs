@@ -18,11 +18,11 @@ namespace SimpleDashboard.Extentions
 
         public static IServiceCollection AddSQLServerDatabase(this IServiceCollection services, string connectionString)
         {
-            return services.AddDbContext<UserDbContext>(
+            return services.AddDbContextPool<UserDbContext>(
                     options => options.UseSqlServer(
                     connectionString,
                     b => b.MigrationsAssembly("Infra.Database.SQLServer")))
-                .AddDbContext<UserStoryDbContext>(
+                .AddDbContextPool<UserStoryDbContext>(
                     options => options.UseSqlServer(
                     connectionString,
                     b => b.MigrationsAssembly("Infra.Database.SQLServer")));

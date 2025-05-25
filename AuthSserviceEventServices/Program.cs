@@ -1,23 +1,18 @@
 using AuthServiceEventServices;
 using Common.Core.DependencyInjection;
 using MessageQueue.RabbitMQ.Extentions;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using SimpleDashboard.Extentions;
 
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        var builder = Host.CreateApplicationBuilder(args);
-        builder.Services.AddHostedService<Worker>();
-        builder.Services.AddSerilog(
-            (configure) => configure.ReadFrom.Configuration(builder.Configuration));
-        //builder.Services.RegisterEasyNetQ();
-        builder.Services.AddRabbitMQBus(builder.Configuration);
-        builder.Services.AddMemoryCache();
-        builder.Services.RegisterDomain("AuthServiceEventServices", "MessageQueue.RabbitMQ");
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<Worker>();
+builder.Services.AddSerilog(
+    (configure) => configure.ReadFrom.Configuration(builder.Configuration));
+builder.Services.AddSQLServerDatabase(builder.Configuration.GetConnectionString("SimpleDashboard"));
+builder.Services.RegisterDomain("AuthServiceEventServices", "Application.Services", "Domain.Services", "Infra.Database.SQLServer", "SimpleDashboard.Common", "MessageQueue.RabbitMQ");
+builder.Services.AddRabbitMQBus(builder.Configuration);
 
-        var host = builder.Build();
+var host = builder.Build();
 
-        host.Run();
-    }
-}
+host.Run();

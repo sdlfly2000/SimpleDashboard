@@ -1,23 +1,28 @@
+using EasyNetQ;
 using MessageQueue.RabbitMQ;
+using MessageQueue.RabbitMQ.MessageQueue;
 
 namespace AuthServiceEventServices
 {
     public class Worker : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
-        private readonly MessageQueueRegister _register;
+        private readonly IServiceScopeFactory _scopeFactory;
 
-        public Worker(ILogger<Worker> logger, MessageQueueRegister register)
+        public Worker(ILogger<Worker> logger, IServiceScopeFactory scopeFactory)
         {
-            _logger = logger;
-            _register = register;
+            _scopeFactory = scopeFactory;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _register.Register("AuthServiceEventServices");
+            using var scope = _scopeFactory.CreateScope();
+            var consumers = scope.ServiceProvider.GetServices<IAMQPConsumer>();
+            var advancedBus = scope.ServiceProvider.GetRequiredService<IBus>().Advanced;
 
-            return Task.CompletedTask;
+            MessageQueueRegister.Register(
+                consumers,
+                advancedBus,
+                "AuthServiceEventServices");
         }
     }
 }

@@ -23,12 +23,16 @@ public partial class UserStoryDbContext : DbContext
 
     public virtual DbSet<UserStoryInformation> UserStoryInformations { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Task>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Tasks__3214EC07F3FDF481");
+            entity.HasKey(e => e.Id).HasName("PK__Tasks__3214EC0729D6AE34");
 
             entity.Property(e => e.CreatedById).HasMaxLength(36);
             entity.Property(e => e.CreatedOn).HasColumnType("datetime");
@@ -42,12 +46,12 @@ public partial class UserStoryDbContext : DbContext
 
             entity.HasOne(d => d.UserStory).WithMany(p => p.Tasks)
                 .HasForeignKey(d => d.UserStoryId)
-                .HasConstraintName("FK__Tasks__UserStory__693CA210");
+                .HasConstraintName("FK__Tasks__UserStory__02FC7413");
         });
 
         modelBuilder.Entity<UserRequirement>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UserRequ__3214EC07E92A1791");
+            entity.HasKey(e => e.Id).HasName("PK__UserRequ__3214EC07B47BF13F");
 
             entity.Property(e => e.CreatedById).HasMaxLength(36);
             entity.Property(e => e.CreatedOn).HasColumnType("datetime");
@@ -62,7 +66,7 @@ public partial class UserStoryDbContext : DbContext
 
         modelBuilder.Entity<UserStoryInformation>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UserStor__3214EC07E439F9A1");
+            entity.HasKey(e => e.Id).HasName("PK__UserStor__3214EC0751BEC1A1");
 
             entity.ToTable("UserStoryInformation");
 
@@ -77,7 +81,7 @@ public partial class UserStoryDbContext : DbContext
 
             entity.HasOne(d => d.UserRequirement).WithMany(p => p.UserStoryInformations)
                 .HasForeignKey(d => d.UserRequirementId)
-                .HasConstraintName("FK__UserStory__UserR__6EF57B66");
+                .HasConstraintName("FK__UserStory__UserR__7D439ABD");
         });
 
         OnModelCreatingPartial(modelBuilder);

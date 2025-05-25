@@ -15,6 +15,8 @@ public partial class UserStoryInformation
 
     public DateTime? StartedOn { get; set; }
 
+    public long? Period { get; set; }
+
     public string? Status { get; set; }
 
     public DateTime? ModifiedOn { get; set; }
@@ -24,8 +26,6 @@ public partial class UserStoryInformation
     public DateTime? CreatedOn { get; set; }
 
     public string? CreatedById { get; set; }
-
-    public long? Period { get; set; }
 
     public long? UserRequirementId { get; set; }
 

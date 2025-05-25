@@ -15,6 +15,8 @@ public partial class Task
 
     public DateTime? StartedOn { get; set; }
 
+    public long? Period { get; set; }
+
     public string? Status { get; set; }
 
     public DateTime? ModifiedOn { get; set; }
@@ -26,8 +28,6 @@ public partial class Task
     public string? CreatedById { get; set; }
 
     public long? UserStoryId { get; set; }
-
-    public long? Period { get; set; }
 
     public virtual UserStoryInformation? UserStory { get; set; }
 }
