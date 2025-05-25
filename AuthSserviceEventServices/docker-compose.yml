@@ -16,7 +16,7 @@ services:
       ASPNETCORE_ENVIRONMENT: 'Production'
     
     networks:
-      traefik_ingress_network:
+      authservice_ingress_network:
       
     deploy:
       mode: global
@@ -28,6 +28,6 @@ services:
         delay: 180s
 
 networks:
-  traefik_ingress_network:
+  authservice_ingress_network:
     external: true
-    name: "logs-and-monitoring_ingress"
+    name: "auth-service-ingress"
