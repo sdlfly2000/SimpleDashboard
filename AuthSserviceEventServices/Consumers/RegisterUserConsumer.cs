@@ -13,7 +13,6 @@ namespace AuthServiceEventServices.Consumers
     {
         private readonly ILogger<RegisterUserConsumer> _logger;
         private readonly IServiceScopeFactory _scopeFactory;
-        private readonly UserService _userService;
 
         public RegisterUserConsumer(
             ILogger<RegisterUserConsumer> logger,
@@ -34,13 +33,13 @@ namespace AuthServiceEventServices.Consumers
                 Name = message.Body.UserName
             };
 
-            var service = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<UserService>();
+            using var scope = _scopeFactory.CreateScope();
+
+            var service = scope.ServiceProvider.GetRequiredService<UserService>();
 
             var response = await service.Register(request);
 
-            return response.IsSuccess
-                ? true
-                : false;
+            return response.IsSuccess;
         }
     }
 }
